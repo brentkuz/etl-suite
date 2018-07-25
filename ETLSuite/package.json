@@ -1,0 +1,26 @@
+{
+  "name": "ETLSuite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gulp default"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-merge": "^0.1.1",
+    "gulp-util": "^3.0.8",
+    "gulplog": "^1.0.0",
+    "jquery": "^3.3.1",
+    "jquery-validation": "^1.17.0",
+    "jquery-validation-unobtrusive": "^3.2.10",
+    "lodash": "^4.17.10",
+    "vue": "^2.5.16"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
