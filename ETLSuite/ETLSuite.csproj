@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <UserSecretsId>b04f2d9b-4bd8-408e-b0a6-4c039a7fde80</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +15,12 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\vendor\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ETLSuite.Business\ETLSuite.Business.csproj" />
+    <ProjectReference Include="..\ETLSuite.Crosscutting\ETLSuite.Crosscutting.csproj" />
+    <ProjectReference Include="..\ETLSuite.Data\ETLSuite.Data.csproj" />
   </ItemGroup>
 
 </Project>
