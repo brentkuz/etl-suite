@@ -9,9 +9,22 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/js/site.min.js",
+    "outputFileName": "wwwroot/js/common.min.js",
     "inputFiles": [
-      "wwwroot/js/site.js"
+      "wwwroot/js/app.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optionally generate .map file
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/project.min.js",
+    "inputFiles": [
+      "wwwroot/js/apps/schema-tree-app.js"
     ],
     // Optionally specify minification options
     "minify": {
