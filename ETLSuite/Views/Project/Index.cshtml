@@ -1,7 +1,45 @@
-﻿
+﻿@model IEnumerable<ETLSuite.Models.Project.ProjectSummaryViewModel>
+
 @{
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Projects</h2>
+
+<div id="projectsList">
+    <div class="row">
+        <div class="col-sm-3">
+            <label>Name</label>
+        </div>
+        <div class="col-sm-5">
+            <label>Description</label>
+        </div>
+        <div class="col-sm-2">
+            <label>Status</label>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+    @foreach (var item in Model)
+    {
+        <div class="row">
+            <div class="col-sm-3">
+                @item.Name
+            </div>
+            <div class="col-sm-5">
+                @item.Description
+            </div>
+            <div class="col-sm-2">
+                @item.Status
+            </div>
+            <div class="col-sm-2">
+                <a asp-controller="Project" asp-action="Manage" asp-route-id="@item.Id">Manage</a>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
+
 

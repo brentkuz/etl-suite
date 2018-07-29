@@ -55,8 +55,8 @@
         <script src="~/vendor/vue/vue.js"></script>
         <script src="~/vendor/lodash/lodash.js"></script>
 
-        @* app *@
-        <script src="~/js/app.js" asp-append-version="true"></script>
+        @* app common *@
+        <script src="~/js/app.js"></script>
 
     </environment>
     <environment exclude="Development">
@@ -80,7 +80,7 @@
                 asp-fallback-src="~/vendor/lodash/lodash.min.js"
                 asp-fallback-test="_"
                 crossorigin="anonymous"></script>
-        <script src="~/js/common.min.js" asp-append-version="true"></script>
+        <script src="~/dist/common.min.js" asp-append-version="true"></script>
     </environment>
 
     @RenderSection("Scripts", required: false)

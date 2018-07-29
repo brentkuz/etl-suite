@@ -1,10 +1,16 @@
-﻿
+﻿//Schema Tree
+
+(function ($, Vue, util, schemaTreeService) {
+    this.Name = "SchemaTreeApp";
+    util.CheckDependencies(this.Name, arguments);
 
 
-(function (Vue) {
-    if (!Vue)
-        console.log("Failed to load Vue");
-    alert(Vue);
+    //bind ui
+    $(function () {
 
 
-})(Vue);
+
+    })
+
+
+})(jQuery, Vue, app.Util, app.Services.SchemaTreeService);

@@ -9,7 +9,7 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/js/common.min.js",
+    "outputFileName": "wwwroot/dist/common.min.js",
     "inputFiles": [
       "wwwroot/js/app.js"
     ],
@@ -22,8 +22,9 @@
     "sourceMap": false
   },
   {
-    "outputFileName": "wwwroot/js/project.min.js",
+    "outputFileName": "wwwroot/dist/projects.min.js",
     "inputFiles": [
+      "wwwroot/js/services/schema-tree-service.js",
       "wwwroot/js/apps/schema-tree-app.js"
     ],
     // Optionally specify minification options

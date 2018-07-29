@@ -1,4 +1,5 @@
-﻿using ETLSuite.Data.Entities;
+﻿using ETLSuite.Crosscutting.Enums;
+using ETLSuite.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace ETLSuite.Data
         }
 
         public DbSet<LogEntry> LogEntries { get; set; }
+        public DbSet<Project> Projects { get; set; }
 
         public override int SaveChanges()
         {
@@ -26,6 +28,24 @@ namespace ETLSuite.Data
             AddTimestamps();
             return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         } 
+
+
+        protected override void OnModelCreating(ModelBuilder mb)
+        {
+            mb.Entity<Project>().HasData(
+                new Project
+                {
+                    Id = 1,
+                    Name = "Project 1",
+                    Description = "Project 1 Description",
+                    Status = ProjectStatus.Enabled,
+                    Created = DateTime.Now,
+                    Modified = DateTime.Now,
+                    CreatedBy = "test",
+                    ModifiedBy = "test"
+                }
+            );
+        }
 
         private void AddTimestamps()
         {
