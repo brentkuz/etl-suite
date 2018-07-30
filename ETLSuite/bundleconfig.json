@@ -22,10 +22,24 @@
     "sourceMap": false
   },
   {
-    "outputFileName": "wwwroot/dist/projects.min.js",
+    "outputFileName": "wwwroot/dist/manage-projects.min.js",
     "inputFiles": [
       "wwwroot/js/services/schema-tree-service.js",
       "wwwroot/js/apps/schema-tree-app.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optionally generate .map file
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/dist/projects.min.js",
+    "inputFiles": [
+      "wwwroot/js/services/project-service.js",
+      "wwwroot/js/apps/project-list-app.js"
     ],
     // Optionally specify minification options
     "minify": {

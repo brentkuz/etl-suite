@@ -1,8 +1,8 @@
 ﻿//Schema Tree
 
 (function ($, Vue, util, schemaTreeService) {
-    this.Name = "SchemaTreeApp";
-    util.CheckDependencies(this.Name, arguments);
+    var name = "SchemaTreeApp";
+    util.CheckDependencies(name, arguments);
 
 
     //bind ui

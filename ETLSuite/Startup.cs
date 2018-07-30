@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using ETLSuite.Business.Services;
 using ETLSuite.Data;
+using ETLSuite.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Serialization;
 
 namespace ETLSuite
 {
@@ -23,11 +27,23 @@ namespace ETLSuite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {            
-            services.AddMvc();
+            services.AddMvc()
+                //avoid Camel Cased JSON
+                .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver()); ;
+            services.AddAutoMapper();
 
             //setup EF
             var connStr = Configuration.GetSection("ConnectionStrings").GetValue<string>("ETLDataConnectionString");
             services.AddDbContext<ETLDataContext>(options => options.UseSqlServer(connStr));
+
+            //Business
+            services.AddTransient<IProjectService, ProjectService>();
+
+            //Data
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<ILogEntryRepository, LogEntryRepository>();
+            services.AddTransient<IProjectRepository, ProjectRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

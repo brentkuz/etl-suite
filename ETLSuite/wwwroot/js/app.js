@@ -5,7 +5,8 @@ app.Services = app.Services || {};
 app.Models = app.Models || {};
 
 (function ($) {
-    console.log("load common")
+    var name = "App";
+    CheckDependencies(name, arguments);
 
     //pub/sub
     var topics = {};
@@ -27,8 +28,7 @@ app.Models = app.Models || {};
         return topic;
     };
 
-    //setup utilities
-    app.Util.CheckDependencies = function (caller, deps) {
+    function CheckDependencies(caller, deps) {
         console.log(caller + " loaded");
         for (var i = 0; i < deps.length; i++) {
             var dep = deps[i];
@@ -37,19 +37,31 @@ app.Models = app.Models || {};
         }
     }
 
+
+    //setup utilities
+    app.Util.CheckDependencies = CheckDependencies;
+
     app.Util.Session = {
-        get: function (key) {
+        Get: function (key) {
             var s = window.sessionStorage[key];
             return s == null ? null : JSON.parse(s);
         },
-        set: function (key, obj) {
+        Set: function (key, obj) {
             window.sessionStorage[key] = JSON.stringify(obj);
         },
-        reset: function (key) {
+        Reset: function (key) {
             window.sessionStorage[key] = null;
         }
-    }
-    
+    };
 
+    app.Util.Notification = {
+        Alert: function (msg) {
+            //$("#alertModal").modal("show");
+            alert(msg);
+        },
+        Log: function (caller, msg) {
+
+        }
+    };
 
 })(jQuery);
