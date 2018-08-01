@@ -1,7 +1,6 @@
 ﻿
 //Project Data Service
-
-app.Services.ProjectService = app.Services.ProjectService || (function ($, util) {
+(function ($, util, services) {
     var name = "ProjectService";
     util.CheckDependencies(name, arguments);
 
@@ -12,9 +11,8 @@ app.Services.ProjectService = app.Services.ProjectService || (function ($, util)
             });
     }
 
-    return {
+    services.ProjectService = app.Services.ProjectService || {
         GetProjects: GetProjects
-
     };
 
-})(jQuery, app.Util);
+})(jQuery, app.Util, app.Services);

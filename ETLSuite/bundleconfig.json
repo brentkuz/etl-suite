@@ -11,7 +11,10 @@
   {
     "outputFileName": "wwwroot/dist/common.min.js",
     "inputFiles": [
+      "wwwroot/js/global.js",
+      "wwwroot/js/util.js",
       "wwwroot/js/app.js"
+
     ],
     // Optionally specify minification options
     "minify": {
@@ -31,6 +34,7 @@
       //apps
       "wwwroot/js/apps/schema-tree-app.js",
       "wwwroot/js/apps/project-info-app.js",
+      "wwwroot/js/apps/project-configuration-app.js",
       "wwwroot/js/apps/manage-tab-app.js"
     ],
     // Optionally specify minification options

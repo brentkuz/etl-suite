@@ -47,8 +47,8 @@
                                 }
                             }
                         });
-                    } catch{
-                        notif.Log(name, err.message);
+                    } catch(err){
+                        util.Log(name, "Failed to load projects", err.message);
                     }
                 };
 

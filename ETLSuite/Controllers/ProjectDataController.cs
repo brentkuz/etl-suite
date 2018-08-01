@@ -7,7 +7,7 @@ using ETLSuite.Business.Services;
 using ETLSuite.Models;
 using ETLSuite.Models.Project;
 using Microsoft.AspNetCore.Mvc;
-using static ETLSuite.Models.Project.ManageProjectViewModel;
+using static ETLSuite.Models.Project.ManageViewModel;
 
 namespace ETLSuite.Controllers
 {

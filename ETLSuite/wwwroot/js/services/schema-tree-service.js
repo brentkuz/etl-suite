@@ -1,13 +1,11 @@
 ﻿//Schema Tree Data Service
-
-app.Services.SchemaTreeService = app.Services.SchemaTreeService || (function ($, util) {
+(function ($, util, services) {
     var name = "SchemaTreeService";
     util.CheckDependencies(name, arguments);
 
+    services.SchemaTreeService = app.Services.SchemaTreeService || {
 
-    return {
-        Name: name
     };
 
-})(jQuery, app.Util);
+})(jQuery, app.Util, app.Services);
 

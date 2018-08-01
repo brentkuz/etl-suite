@@ -6,7 +6,9 @@
     util.CheckDependencies(name, arguments);
 
     //ctor
-    app.Init.ProjectInfoApp = function () {
+    app.Initializers.ProjectInfoApp = function (projectId) {
+        console.debug(name + " init");
+
 
     };
 

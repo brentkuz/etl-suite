@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 
 namespace ETLSuite.Models.Project
 {
-    public class ManageProjectViewModel
+    public class ManageViewModel
     {
+        public int? ProjectId { get; set; }
         public ManageProjectTab CurrentTab { get; set; }
 
         public enum ManageProjectTab
         {
-            Info, Config, Schema, Jobs 
+            ProjectInfo, ProjectConfiguration, ProjectUploadSchema, ProjectJobs 
         }
     }
 }

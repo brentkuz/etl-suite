@@ -9,7 +9,7 @@ using ETLSuite.Data;
 using ETLSuite.Models;
 using ETLSuite.Models.Project;
 using Microsoft.AspNetCore.Mvc;
-using static ETLSuite.Models.Project.ManageProjectViewModel;
+using static ETLSuite.Models.Project.ManageViewModel;
 
 namespace ETLSuite.Controllers
 {
@@ -38,7 +38,12 @@ namespace ETLSuite.Controllers
 
         public IActionResult Manage(int? id)
         {
-            return View();
+            var vm = new ManageViewModel()
+            {
+                ProjectId = id,
+                CurrentTab = ManageProjectTab.ProjectInfo
+            };
+            return View(vm);
         }
         public IActionResult GetTab(string tab)
         {
