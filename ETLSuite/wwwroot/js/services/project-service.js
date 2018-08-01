@@ -6,7 +6,7 @@ app.Services.ProjectService = app.Services.ProjectService || (function ($, util)
     util.CheckDependencies(name, arguments);
 
     function GetProjects() {
-        return $.getJSON("/Project/GetProjects")
+        return $.getJSON("/ProjectData/GetProjects")
             .done(function (resp) {
                 return resp;
             });

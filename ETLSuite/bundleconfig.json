@@ -24,8 +24,14 @@
   {
     "outputFileName": "wwwroot/dist/manage-projects.min.js",
     "inputFiles": [
+      //services
+      "wwwroot/js/services/project-service.js",
       "wwwroot/js/services/schema-tree-service.js",
-      "wwwroot/js/apps/schema-tree-app.js"
+
+      //apps
+      "wwwroot/js/apps/schema-tree-app.js",
+      "wwwroot/js/apps/project-info-app.js",
+      "wwwroot/js/apps/manage-tab-app.js"
     ],
     // Optionally specify minification options
     "minify": {

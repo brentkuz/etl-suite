@@ -9,11 +9,13 @@ using ETLSuite.Data;
 using ETLSuite.Models;
 using ETLSuite.Models.Project;
 using Microsoft.AspNetCore.Mvc;
+using static ETLSuite.Models.Project.ManageProjectViewModel;
 
 namespace ETLSuite.Controllers
 {
     public class ProjectController : Controller
     {
+        private const string TabViewPath = "~/Views/Project/Tabs/";
         private readonly IMapper mapper;
         private IProjectService projectService;
 
@@ -22,42 +24,29 @@ namespace ETLSuite.Controllers
             this.mapper = mapper;
             this.projectService = projectService;
         }
+
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult GetProjects()
-        {
-            var response = new JsonResponse();
-            try
-            {
-                var projects = projectService.GetAll();
-                var vms = new List<ProjectSummaryViewModel>();
 
-                foreach (var proj in projects)
-                    vms.Add(mapper.Map<ProjectSummaryViewModel>(proj));
-
-                response.Data = vms;
-                response.Success = true;
-            }
-            catch(Exception ex)
-            {
-                response.Success = false;
-                response.Notification = "An error occurred retrieving your projects";
-            }
-
-            return Json(response);
-        }
 
         public IActionResult Create()
         {
             return View();
         }
-        public IActionResult Manage()
-        {
 
+        public IActionResult Manage(int? id)
+        {
             return View();
         }
+        public IActionResult GetTab(string tab)
+        {
+            ManageProjectTab manageProjectTab = (ManageProjectTab)Enum.Parse(typeof(ManageProjectTab), tab);
+            var viewName = TabViewPath + manageProjectTab.ToString() + "Partial.cshtml";
+            return PartialView(viewName);
+        }
+
         public IActionResult Delete(int id)
         {
             return View();

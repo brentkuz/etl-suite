@@ -3,6 +3,7 @@ var app = app || {};
 app.Util = app.Util || {};
 app.Services = app.Services || {};
 app.Models = app.Models || {};
+app.Init = app.Init || {};
 
 (function ($) {
     var name = "App";

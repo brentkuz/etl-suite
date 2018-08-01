@@ -5,7 +5,7 @@
 }
 
 <h2>Projects</h2>
-
+<a asp-controller="Project" asp-action="Manage">New Project</a>
 <div id="projectListApp">
     <div class="row">
         <div class="col-sm-3">
@@ -31,7 +31,7 @@
             {{p.Status}}
         </div>
         <div class="col-sm-2">
-            
+            <a v-bind:href="'/Project/Manage/' + p.Id">Manage</a>
         </div>
     </div>
 
