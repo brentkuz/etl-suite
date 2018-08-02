@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ETLSuite.Models.Project
 {
-    public class ManageViewModel
+    public class ManageViewModel : ViewModelBase
     {
         public int? ProjectId { get; set; }
         public ManageProjectTab CurrentTab { get; set; }

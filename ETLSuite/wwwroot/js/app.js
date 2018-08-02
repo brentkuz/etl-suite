@@ -1,6 +1,6 @@
 ﻿//App
 
-(function ($, util) {
+(function ($, util, services, models, initializers) {
     var name = "App";
     util.CheckDependencies(name, arguments);
     //pub/sub
@@ -22,4 +22,4 @@
         return topic;
     };   
 
-})(jQuery, app.Util);
+})(jQuery, app.Util, app.Services, app.Models, app.Initializers);

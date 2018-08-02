@@ -1,6 +1,15 @@
 ﻿//Manage Tab App
 
-(function ($, Vue, util, initProjectInfoApp, initProjectConfigurationApp) {
+(function (
+    $,
+    Vue,
+    util,
+    initProjectInfoApp,
+    initProjectConfigurationApp,
+    initProjectUploadSchemaApp,
+    initProjectJobsApp
+) {
+
     var name = "ManageTabApp";
     var contentTargetEl = "#contentTarget";
     
@@ -9,12 +18,12 @@
     //map tab name to an app init function
     var tabAppMap = {
         "ProjectInfo": initProjectInfoApp,
-        "ProjectConfiguration": initProjectConfigurationApp
+        "ProjectConfiguration": initProjectConfigurationApp,
+        "ProjectUploadSchema": initProjectUploadSchemaApp,
+        "ProjectJobs": initProjectJobsApp
     };
 
-    $(function () {
-        //get project id
-        var config = JSON.parse($("#manageProjectConfig").html());
+    $(function () {       
 
         var tabs = new Vue({
             el: "#manageTabApp",
@@ -69,4 +78,12 @@
 
     })
 
-})(jQuery, Vue, app.Util, app.Initializers.ProjectInfoApp, app.Initializers.ProjectConfigurationApp);
+})(
+    jQuery,
+    Vue,
+    app.Util,
+    app.Initializers.ProjectInfoApp,
+    app.Initializers.ProjectConfigurationApp,
+    app.Initializers.ProjectUploadSchemaApp,
+    app.Initializers.ProjectJobsApp
+);

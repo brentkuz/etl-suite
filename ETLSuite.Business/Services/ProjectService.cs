@@ -9,6 +9,7 @@ namespace ETLSuite.Business.Services
     public interface IProjectService
     {
         IEnumerable<Project> GetAll();
+        bool CreateEmptyProject(string projectName, out int id);
     }
 
     public class ProjectService : ServiceBase, IProjectService
@@ -21,5 +22,19 @@ namespace ETLSuite.Business.Services
         {
             return uow.ProjectRepository.Get();
         }
+
+        public bool CreateEmptyProject(string projectName, out int id)
+        {
+            var project = new Project
+            {
+                Name = projectName
+            };
+            uow.ProjectRepository.Insert(project);
+
+            id = project.Id;
+
+            return uow.Save() > 0;
+        }
+
     }
 }

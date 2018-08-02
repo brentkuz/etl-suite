@@ -12,6 +12,8 @@
         Dir: true
     };
 
+    var notif = util.Notification("#notification");
+
     //bind ui
     $(function () {
 
@@ -71,6 +73,10 @@
                         this.SortDir = !this.SortDir;
                     else
                         this.SortDir = true;
+                },
+                CreateProject: function () {
+                    var projectName = notif.Prompt("Please enter the name of your new project.");
+                    window.location.href = "/"
                 }
             }
 

@@ -41,8 +41,11 @@
                 //TODO: add in fancy modal
                 alert(msg);
             },
-            InUI: function (el, msg) {
-
+            InUI: function (msg) {
+                $(el).html(msg);
+            },
+            Prompt: function (msg) {
+                return prompt(msg);
             }
         }
     };
@@ -57,5 +60,12 @@
 
             }
         }
-    };
+    };  
+
+    //load urls
+    $(function () {
+        alert($("#urlConfig").html())
+        util.Urls = JSON.parse($("#urlConfig").html());
+    })
+
 })(jQuery, app.Util);

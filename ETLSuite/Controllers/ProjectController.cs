@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using ETLSuite.Business.Services;
+using ETLSuite.Crosscutting;
 using ETLSuite.Crosscutting.Enums;
 using ETLSuite.Data;
+using ETLSuite.Data.Entities;
 using ETLSuite.Models;
 using ETLSuite.Models.Project;
 using Microsoft.AspNetCore.Mvc;
@@ -14,8 +16,7 @@ using static ETLSuite.Models.Project.ManageViewModel;
 namespace ETLSuite.Controllers
 {
     public class ProjectController : Controller
-    {
-        private const string TabViewPath = "~/Views/Project/Tabs/";
+    {        
         private readonly IMapper mapper;
         private IProjectService projectService;
 
@@ -27,16 +28,25 @@ namespace ETLSuite.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(new IndexViewModel());
         }
 
-
-        public IActionResult Create()
+        [HttpGet]
+        public IActionResult Create(string name)
         {
-            return View();
+            var project = new Project
+            {
+                Name = name
+            };
+
+            int id;
+
+            var result = projectService.CreateEmptyProject(name, out id);
+
+            return result ? RedirectToAction("Manage", new { id }) : RedirectToAction("Error", "Home");
         }
 
-        public IActionResult Manage(int? id)
+        public IActionResult Manage(int id)
         {
             var vm = new ManageViewModel()
             {
@@ -48,7 +58,7 @@ namespace ETLSuite.Controllers
         public IActionResult GetTab(string tab)
         {
             ManageProjectTab manageProjectTab = (ManageProjectTab)Enum.Parse(typeof(ManageProjectTab), tab);
-            var viewName = TabViewPath + manageProjectTab.ToString() + "Partial.cshtml";
+            var viewName = Constants.TabViewPath + manageProjectTab.ToString() + Constants.PartialViewEnding;
             return PartialView(viewName);
         }
 
