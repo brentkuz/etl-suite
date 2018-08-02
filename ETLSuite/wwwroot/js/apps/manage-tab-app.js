@@ -4,6 +4,7 @@
     $,
     Vue,
     util,
+    projectService,
     initProjectInfoApp,
     initProjectConfigurationApp,
     initProjectUploadSchemaApp,
@@ -14,6 +15,9 @@
     var contentTargetEl = "#contentTarget";
     
     util.CheckDependencies(name, arguments);
+
+    var config = util.Config;
+    var urls = util.Urls;
 
     //map tab name to an app init function
     var tabAppMap = {
@@ -32,7 +36,7 @@
             },
             created: function () {
                 this.InitTab = function (tab, projectId) {
-                    $.get("/Project/GetTab?tab=" + tab, function (resp) {
+                    projectService.GetTab(tab).done(function (resp) {
                         //load template
                         $(contentTargetEl).html(resp);
 
@@ -43,8 +47,7 @@
                             init(projectId);
                         else
                             util.Log(name, "Failed to init " + tab + " tab app.")
-                    },
-                        "html");
+                    });
                 };
                 this.InitTabApp = function (tab, projectId) {
                     //init app
@@ -82,6 +85,7 @@
     jQuery,
     Vue,
     app.Util,
+    app.Services.ProjectService,
     app.Initializers.ProjectInfoApp,
     app.Initializers.ProjectConfigurationApp,
     app.Initializers.ProjectUploadSchemaApp,

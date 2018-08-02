@@ -41,11 +41,13 @@
 
 </div>
 
+@section config{
+    @*Injected config*@
+    @Html.RenderJsonConfigTag("config", Model.GetClientConfig())
+    @Html.RenderJsonConfigTag("urlConfig", Model.GetUrls())
+}
 
 @section scripts{
-    
-    @Html.RenderJsonConfigTag("urlConfig", Model.GetUrls())
-
     <environment include="Development">
         <script src="~/js/services/project-service.js"></script>
         <script src="~/js/apps/project-list-app.js"></script>

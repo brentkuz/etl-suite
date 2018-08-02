@@ -63,9 +63,16 @@
     };  
 
     //load urls
-    $(function () {
-        alert($("#urlConfig").html())
-        util.Urls = JSON.parse($("#urlConfig").html());
-    })
+    //$(function () {
+        var conf = $("#config").html();
+        if (conf) {
+            util.Config = JSON.parse(conf);
+        }
+        var scr = $("#urlConfig").html();
+        if (scr) {
+            util.Urls = JSON.parse(scr);
+        }
+
+    //})
 
 })(jQuery, app.Util);

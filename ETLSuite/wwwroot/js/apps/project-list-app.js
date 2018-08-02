@@ -4,6 +4,9 @@
     var name = "ProjectListApp";
     util.CheckDependencies(name, arguments);
 
+    var config = util.Config;
+    var urls = util.Urls;
+
     var session = app.Util.Session;
     var notif = app.Util.Notification;
 
@@ -76,7 +79,7 @@
                 },
                 CreateProject: function () {
                     var projectName = notif.Prompt("Please enter the name of your new project.");
-                    window.location.href = "/"
+                    window.location.href = urls.Project_Create + projectName;
                 }
             }
 

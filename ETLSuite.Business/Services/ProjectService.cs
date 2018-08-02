@@ -29,11 +29,12 @@ namespace ETLSuite.Business.Services
             {
                 Name = projectName
             };
-            uow.ProjectRepository.Insert(project);
+            uow.ProjectRepository.Insert(project);            
 
+            var success = uow.Save() > 0;
             id = project.Id;
 
-            return uow.Save() > 0;
+            return success;
         }
 
     }
