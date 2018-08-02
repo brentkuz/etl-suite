@@ -19,6 +19,8 @@
     var config = util.Config;
     var urls = util.Urls;
 
+    var notif = util.Notification();
+
     //map tab name to an app init function
     var tabAppMap = {
         "ProjectInfo": initProjectInfoApp,
@@ -62,18 +64,32 @@
                 //init
                 try {
                     this.InitTab(config.CurrentTab, config.ProjectId);
-
-                } catch(err){
-                    util.Log(name, "Failed to init", err);
+                    this.CurrentTab = config.CurrentTab;
+                } catch (err) {
+                    notif.UI("An error occured loading the page", true);
+                    throw err;
                 }
 
             },
             methods: {
-                ChangeTab: function (tab) {    
+                ChangeTab: function (e) {  
+                    console.log("ChangeTab")
                     try {
+                        var tab = $(e.target).data("id");
                         this.InitTab(tab, config.ProjectId);
+                        this.CurrentTab = tab;
                     } catch(err){
-                        util.Log(name, "Failed to load tab");
+                        notif.UI("An error occured loading the tab", true);
+                        throw err;
+                    }
+                },
+                GetClass: function (e) {
+                    console.log("GetClass")
+                    var tab = $(e.target).data("id");
+                    if (tab == this.CurrentTab) {
+                        el.removeClass("btn-default").addClass("btn-primary");
+                    } else {
+                        el.removeClass("btn-primary").addClass("btn-default");
                     }
                 }
             }

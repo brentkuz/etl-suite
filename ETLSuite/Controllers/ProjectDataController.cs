@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Controller for serving Project data
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,6 +25,7 @@ namespace ETLSuite.Controllers
             this.projectService = projectService;
         }
 
+        [HttpGet]
         public IActionResult GetProjects()
         {
             var response = new JsonResponse();
@@ -41,11 +44,30 @@ namespace ETLSuite.Controllers
             {
                 response.Success = false;
                 response.Notification = "An error occurred retrieving your projects";
+
             }
 
             return Json(response);
         }
 
+        [HttpGet]
+        public IActionResult GetProjectInfo(int id)
+        {
+            var response = new JsonResponse();
+            try
+            {
+                var project = projectService.GetById(id);
+                response.Data = project;
+                response.Success = project != null;
+            }
+            catch(Exception ex)
+            {
+                response.Success = false;
+                response.Notification = "An error occurred retrieving your project";
+            }
+
+            return Json(response);
+        }
 
     }
 }

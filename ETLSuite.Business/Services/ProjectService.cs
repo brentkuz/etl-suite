@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using ETLSuite.Data;
 using ETLSuite.Data.Entities;
@@ -9,6 +10,7 @@ namespace ETLSuite.Business.Services
     public interface IProjectService
     {
         IEnumerable<Project> GetAll();
+        Project GetById(int id);
         bool CreateEmptyProject(string projectName, out int id);
     }
 
@@ -37,5 +39,10 @@ namespace ETLSuite.Business.Services
             return success;
         }
 
+        public Project GetById(int id)
+        {
+            return uow.ProjectRepository.Get()
+                .Where(x => x.Id == id).SingleOrDefault();            
+        }
     }
 }

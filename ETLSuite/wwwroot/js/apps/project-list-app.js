@@ -15,7 +15,7 @@
         Dir: true
     };
 
-    var notif = util.Notification("#notification");
+    var notif = util.Notification();
 
     //bind ui
     $(function () {
@@ -48,12 +48,13 @@
                             if (resp) {
                                 self.Projects = resp.Data;
                                 if (resp.Success == false) {
-                                    notif.Alert(resp.Notification);
+                                    notif.UI(resp.Notification, true);
                                 }
                             }
                         });
-                    } catch(err){
-                        util.Log(name, "Failed to load projects", err.message);
+                    } catch (err) {
+                        notif.UI("An error occurred loading projects", true);
+                        throw err;
                     }
                 };
 

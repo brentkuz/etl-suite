@@ -7,12 +7,12 @@
 }
 
 <h2>Manage</h2>
-
+<span id="notification"></span>
 <div id="manageTabApp">
-    <button class="btn btn-default" v-on:click="ChangeTab('ProjectInfo')">Project Info</button>
-    <button class="btn btn-default" v-on:click="ChangeTab('ProjectConfiguration')">Configuration</button>
-    <button class="btn btn-default" v-on:click="ChangeTab('ProjectUploadSchema')">Upload Schema</button>
-    <button class="btn btn-default" v-on:click="ChangeTab('ProjectJobs')">Jobs</button>
+    <button class="btn btn-default" v-on:click="ChangeTab" v-bind:class="GetClass" data-id="ProjectInfo">Project Info</button>
+    <button class="btn btn-default" v-on:click="ChangeTab" v-bind:class="GetClass" data-id="ProjectConfiguration">Configuration</button>
+    <button class="btn btn-default" v-on:click="ChangeTab" v-bind:class="GetClass" data-id="ProjectUploadSchema">Upload Schema</button>
+    <button class="btn btn-default" v-on:click="ChangeTab" v-bind:class="GetClass" data-id="ProjectJobs">Jobs</button>
 </div>
 <div id="contentTarget">
 

@@ -4,6 +4,8 @@
     var name = "Util";
     CheckDependencies(name, arguments);
 
+    var defaultNotificationEl = "#notification";
+
     //Check module dependencies and log
     function CheckDependencies(caller, deps) {
         console.debug(caller + " loaded");
@@ -36,15 +38,23 @@
 
     //User notifications
     util.Notification = function (el) {
+        el = el || defaultNotificationEl;
         return {
-            Alert: function (msg) {
+            Alert: function (msg, isError) {
                 //TODO: add in fancy modal
                 alert(msg);
             },
-            InUI: function (msg) {
-                $(el).html(msg);
+            UI: function (msg, isError) {  
+                var e = $(el);
+                if (isError) {
+                    e.addClass("error-text");
+                }
+                else {
+                    e.removeClass("error-text");
+                }
+                e.html(msg);
             },
-            Prompt: function (msg) {
+            Prompt: function (msg, isError) {
                 return prompt(msg);
             }
         }

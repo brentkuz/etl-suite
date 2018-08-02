@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//Controller for serving Project Views
+
+using System;
 using AutoMapper;
 using ETLSuite.Business.Services;
 using ETLSuite.Crosscutting;
-using ETLSuite.Crosscutting.Enums;
-using ETLSuite.Data;
 using ETLSuite.Data.Entities;
-using ETLSuite.Models;
 using ETLSuite.Models.Project;
 using Microsoft.AspNetCore.Mvc;
 using static ETLSuite.Models.Project.ManageViewModel;
@@ -40,10 +36,10 @@ namespace ETLSuite.Controllers
             };
 
             int id;
-
-            var result = projectService.CreateEmptyProject(name, out id);
-
-            return result ? RedirectToAction("Manage", new { id }) : RedirectToAction("Error", "Home");
+            
+            return projectService.CreateEmptyProject(name, out id) 
+                ? RedirectToAction("Manage", new { id }) 
+                : RedirectToAction("Error", "Home");
         }
 
         public IActionResult Manage(int id)

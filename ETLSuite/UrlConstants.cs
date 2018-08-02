@@ -10,8 +10,13 @@ namespace ETLSuite
 {
     public class UrlConstants
     {
-        public string ProjectData_GetProjects { get; } = "/ProjectData/GetProjects";
+        //Project 
         public string Project_Create { get; } = "/Project/Create?name=";
         public string Project_GetTab { get; } = "/Project/GetTab?tab=";
+
+        //ProjectData
+        public string ProjectData_GetProjects { get; } = "/ProjectData/GetProjects";
+        public string ProjectData_GetProjectInfo { get; } = "/ProjectData/GetProjectInfo";
+
     }
 }
