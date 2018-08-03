@@ -24,7 +24,8 @@ namespace ETLSuite.Util
             CreateMap<Project, ProjectInfoViewModel>()
                 .ForMember(dest => dest.SelectedStatus, opts => opts.MapFrom(src => (int)src.Status))
                 .ForMember(dest => dest.StatusOptions, opts => opts.ResolveUsing(new ProjectStatusToDictionaryResolver()));
-
+            CreateMap<ProjectInfoViewModel, Project>()
+                .ForMember(dest => dest.Status, opts => opts.MapFrom(src => (ProjectStatus)src.SelectedStatus));
 
         }
 

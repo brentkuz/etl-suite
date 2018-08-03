@@ -26,11 +26,18 @@
                 return resp;
             });
     }
+    function SaveProjectInfo(project) {
+        return $.post(urls.ProjectData_SaveProjectInfo, project)
+            .done(function (resp) {
+                return resp;
+            });
+    }
 
     services.ProjectService = app.Services.ProjectService || {
         GetProjects: GetProjects,
         GetTab: GetTab,
-        GetProjectInfo: GetProjectInfo
+        GetProjectInfo: GetProjectInfo,
+        SaveProjectInfo: SaveProjectInfo
     };
 
 })(jQuery, app.Util, app.Services);

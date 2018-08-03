@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using ETLSuite.Business.Services;
+using ETLSuite.Data.Entities;
 using ETLSuite.Models;
 using ETLSuite.Models.Project;
 using Microsoft.AspNetCore.Mvc;
@@ -46,7 +47,7 @@ namespace ETLSuite.Controllers
             catch (Exception ex)
             {
                 response.Success = false;
-                response.Notification = "An error occurred retrieving your projects";
+                response.Notification = "An error occurred retrieving your projects.";
                 logger.LogError(ex, response.Notification);
             }
 
@@ -66,10 +67,39 @@ namespace ETLSuite.Controllers
             catch(Exception ex)
             {
                 response.Success = false;
-                response.Notification = "An error occurred retrieving your project";
+                response.Notification = "An error occurred retrieving your project.";
                 logger.LogError(ex, response.Notification);
             }
 
+            return Json(response);
+        }
+
+        [HttpPost]
+        public IActionResult SaveProjectInfo(ProjectInfoViewModel vm)
+        {
+            var response = new JsonResponse();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var project = mapper.Map<Project>(vm);                    
+
+                    response.Success = projectService.UpdateProjectInfo(project);
+                    if (!response.Success)
+                    {
+                        response.Notification = "An error occurred saving your changes";
+                        var refresh = projectService.GetById(vm.Id);
+                        if (refresh != null)
+                            response.Data = mapper.Map<ProjectInfoViewModel>(refresh);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                response.Success = false;
+                response.Notification = "An error occurred saving your changes.";
+                logger.LogError(ex, response.Notification);
+            }
             return Json(response);
         }
 

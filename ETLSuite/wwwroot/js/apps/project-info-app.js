@@ -18,37 +18,40 @@
                 Name: "",
                 Description: "",
                 SelectedStatus: "",
-                StatusOptions: []
+                StatusOptions: [],
+                SaveSuccess: false                
             },
-            created: function(){
+            created: function () {
+                this.BindData = function (p) {
+                    this.Name = p.Name;
+                    this.Description = p.Description;
+                    this.SelectedStatus = p.SelectedStatus;
+
+                    for (var key in p.StatusOptions) {
+                        if (!p.StatusOptions.hasOwnProperty(key)) continue;
+
+                        this.StatusOptions.push({
+                            Value: key,
+                            Text: p.StatusOptions[key]
+                        })
+                    };
+                };
                 this.GetProjectInfo = function (id) {
                     var self = this;
                     projectService.GetProjectInfo(id).done(function (resp) {
                         if (resp) {
                             if (resp.Success && resp.Data) {
                                 var p = resp.Data;
-                                self.Name = p.Name;
-                                self.Description = p.Description;
-                                self.SelectedStatus = p.SelectedStatus;
-
-                                for (var key in p.StatusOptions) {
-                                    if (!p.StatusOptions.hasOwnProperty(key)) continue;
-
-                                    self.StatusOptions.push({
-                                        Value: key,
-                                        Text: p.StatusOptions[key]
-                                    })
-                                };
-                                                            
+                                self.BindData(p);
                             }
                         }
                     })
-                }
-
+                };
 
                 //init 
                 try {
                     this.GetProjectInfo(projectId);
+                    this.SaveSuccess = false;
 
                 } catch (err) {
                     notif.UI("An error occurred loading the project", true);
@@ -56,7 +59,35 @@
                 }
             },
             methods: {
+                submit: function (e) {
+                    e.preventDefault();
+                    var self = this;
+                    try {
+                        projectService.SaveProjectInfo({
+                            Id: this.Id,
+                            Name: this.Name,
+                            Description: this.Description,
+                            SelectedStatus: this.SelectedStatus
+                        }).done(function (resp) {
+                            if (resp) {
+                                if (resp.Success) {
+                                    self.SaveSuccess = true;
+                                } else {
+                                    self.SaveSuccess = false;
+                                    notif.UI(resp.Notification, true);
+                                    self.BindData(resp.Data);
+                                }
+                            }
 
+                        });
+                        
+                    } catch (err) {
+                        notif.UI("An error occurred saving your changes", true);
+                        self.SaveSuccess = false;
+                        throw err;
+                    }
+                    
+                }
             }
         })
     };

@@ -12,6 +12,7 @@ namespace ETLSuite.Business.Services
         IEnumerable<Project> GetAll();
         Project GetById(int id);
         bool CreateEmptyProject(string projectName, out int id);
+        bool UpdateProjectInfo(Project project);
     }
 
     public class ProjectService : ServiceBase, IProjectService
@@ -43,6 +44,21 @@ namespace ETLSuite.Business.Services
         {
             return uow.ProjectRepository.Get()
                 .Where(x => x.Id == id).SingleOrDefault();            
+        }
+
+        public bool UpdateProjectInfo(Project project)
+        {
+            var inDb = GetById(project.Id);
+            if (inDb == null)
+                return false;
+
+            inDb.Name = project.Name;
+            inDb.Description = project.Description;
+            inDb.Status = project.Status;
+
+            uow.ProjectRepository.Update(inDb);
+
+            return uow.Save() > 0;
         }
     }
 }

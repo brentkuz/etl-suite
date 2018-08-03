@@ -11,7 +11,7 @@ namespace ETLSuite.Data.Repositories
         IQueryable<LogEntry> Get();
         void Insert(LogEntry project);
         void Delete(int id);
-        void Update(int id, LogEntry newValues);
+        void Update(LogEntry newValues);
     }
     public class LogEntryRepository : RepositoryBase<LogEntry>, ILogEntryRepository
     {

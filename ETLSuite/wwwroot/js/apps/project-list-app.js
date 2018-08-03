@@ -79,7 +79,9 @@
                 },
                 CreateProject: function () {
                     var projectName = notif.Prompt("Please enter the name of your new project.");
-                    window.location.href = urls.Project_Create + projectName;
+                    if (projectName !== "" && projectName !== null) {
+                        window.location.href = urls.Project_Create + projectName;
+                    }
                 }
             }
 

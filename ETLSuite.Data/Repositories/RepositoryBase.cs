@@ -25,7 +25,7 @@ namespace ETLSuite.Data.Repositories
             context.Add(obj);
         }
 
-        public virtual void Update(int id, T newValues)
+        public virtual void Update(T newValues)
         {
             context.Set<T>().Attach(newValues);
             context.Entry(newValues).State = EntityState.Modified;

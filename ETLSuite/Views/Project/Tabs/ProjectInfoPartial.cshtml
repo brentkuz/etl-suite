@@ -1,10 +1,16 @@
 ﻿
 <div id="projectInfoApp">
-    <form @@submit="submitForm">
+    <form v-on:submit.prevent="submit">
+        <div class="row bottom-margin-10">
+            <div class="col-sm-12 text-right">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <save-success v-model="SaveSuccess"></save-success>
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-4">
                 <label>Project Name:</label>
-                <input type="text" class="form-control" v-model="Name" />
+                <input type="text" class="form-control" v-model="Name" required/>
             </div>
             <div class="col-sm-6">
                 <label>Description:</label>
@@ -12,7 +18,7 @@
             </div>
             <div class="col-sm-2">
                 <label>Status</label>
-                <select class="form-control" v-model="SelectedStatus">
+                <select class="form-control" v-model="SelectedStatus" required>
                     <option v-for="s in StatusOptions" v-bind:value="s.Value">
                         {{ s.Text }}
                     </option>

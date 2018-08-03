@@ -27,6 +27,9 @@
   {
     "outputFileName": "wwwroot/dist/manage-projects.min.js",
     "inputFiles": [
+      //components
+      "wwwroot/js/components/save-success-component.js",
+
       //services
       "wwwroot/js/services/project-service.js",
       "wwwroot/js/services/schema-tree-service.js",

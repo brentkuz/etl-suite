@@ -12,7 +12,7 @@ namespace ETLSuite.Data.Repositories
         IQueryable<Project> Get();
         void Insert(Project project);
         void Delete(int id);
-        void Update(int id, Project newValues);
+        void Update(Project newValues);
     }
 
     public class ProjectRepository : RepositoryBase<Project>, IProjectRepository

@@ -14,6 +14,7 @@
     <button class="btn btn-default" v-on:click="ChangeTab" v-bind:class="GetClass" data-id="ProjectUploadSchema">Upload Schema</button>
     <button class="btn btn-default" v-on:click="ChangeTab" v-bind:class="GetClass" data-id="ProjectJobs">Jobs</button>
 </div>
+<hr />
 <div id="contentTarget">
 
 </div>
@@ -29,6 +30,9 @@
 
 @section scripts{
     <environment include="Development">
+        @* Components *@
+        <script src="~/js/components/save-success-component.js"></script>
+
         @* Services *@
         <script src="~/js/services/project-service.js"></script>
         <script src="~/js/services/schema-tree-service.js"></script>
