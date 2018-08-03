@@ -16,7 +16,7 @@ namespace ETLSuite
 
         //ProjectData
         public string ProjectData_GetProjects { get; } = "/ProjectData/GetProjects";
-        public string ProjectData_GetProjectInfo { get; } = "/ProjectData/GetProjectInfo";
+        public string ProjectData_GetProjectInfo { get; } = "/ProjectData/GetProjectInfo/";
 
     }
 }

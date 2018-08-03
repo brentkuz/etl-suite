@@ -19,5 +19,16 @@ namespace ETLSuite.Util
             
             return hb;
         }
+
+        public static IHtmlContent RenderJsonConfigTags(this IHtmlHelper html, Dictionary<string, string> dict)
+        {
+            var hb = new HtmlContentBuilder();
+            foreach(var d in dict)
+            {
+                hb.AppendHtml(RenderJsonConfigTag(html, d.Key, d.Value));
+            }
+
+            return hb;
+        }
     }
 }

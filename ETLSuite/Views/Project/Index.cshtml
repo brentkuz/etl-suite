@@ -43,8 +43,11 @@
 
 @section config{
     @*Injected config*@
-    @Html.RenderJsonConfigTag("config", Model.GetClientConfig())
-    @Html.RenderJsonConfigTag("urlConfig", Model.GetUrls())
+    @Html.RenderJsonConfigTags(new Dictionary<string, string>
+    {
+        {"config",  Model.GetClientConfig()},
+        {"urlConfig", Model.GetUrls()}
+    })
 }
 
 @section scripts{

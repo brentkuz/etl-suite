@@ -7,8 +7,7 @@
     var config = util.Config;
     var urls = util.Urls;
 
-    var session = app.Util.Session;
-    var notif = app.Util.Notification;
+    var session = util.Session;
 
     var defaultSort = {
         Col: "Name",

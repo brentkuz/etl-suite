@@ -20,10 +20,17 @@
             "html"
         );
     }
+    function GetProjectInfo(id) {
+        return $.getJSON(urls.ProjectData_GetProjectInfo + id)
+            .done(function (resp) {
+                return resp;
+            });
+    }
 
     services.ProjectService = app.Services.ProjectService || {
         GetProjects: GetProjects,
-        GetTab: GetTab
+        GetTab: GetTab,
+        GetProjectInfo: GetProjectInfo
     };
 
 })(jQuery, app.Util, app.Services);

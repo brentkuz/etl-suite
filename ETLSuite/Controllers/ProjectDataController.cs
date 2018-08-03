@@ -9,6 +9,7 @@ using ETLSuite.Business.Services;
 using ETLSuite.Models;
 using ETLSuite.Models.Project;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using static ETLSuite.Models.Project.ManageViewModel;
 
 namespace ETLSuite.Controllers
@@ -17,12 +18,14 @@ namespace ETLSuite.Controllers
     {       
         private readonly IMapper mapper;
         private IProjectService projectService;
+        private ILogger<ProjectDataController> logger;
 
 
-        public ProjectDataController(IMapper mapper, IProjectService projectService)
+        public ProjectDataController(IMapper mapper, IProjectService projectService, ILogger<ProjectDataController> logger)
         {
             this.mapper = mapper;
             this.projectService = projectService;
+            this.logger = logger;
         }
 
         [HttpGet]
@@ -44,7 +47,7 @@ namespace ETLSuite.Controllers
             {
                 response.Success = false;
                 response.Notification = "An error occurred retrieving your projects";
-
+                logger.LogError(ex, response.Notification);
             }
 
             return Json(response);
@@ -57,13 +60,14 @@ namespace ETLSuite.Controllers
             try
             {
                 var project = projectService.GetById(id);
-                response.Data = project;
+                response.Data = mapper.Map<ProjectInfoViewModel>(project);
                 response.Success = project != null;
             }
             catch(Exception ex)
             {
                 response.Success = false;
                 response.Notification = "An error occurred retrieving your project";
+                logger.LogError(ex, response.Notification);
             }
 
             return Json(response);

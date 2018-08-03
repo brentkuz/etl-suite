@@ -6,6 +6,7 @@ namespace ETLSuite.Crosscutting.Enums
 {
     public enum ProjectStatus
     {
-        Enabled, Disabled
+        Enabled,
+        Disabled
     }
 }
