@@ -11,14 +11,12 @@ using static ETLSuite.Models.Project.ManageViewModel;
 
 namespace ETLSuite.Controllers
 {
-    public class ProjectController : Controller
+    public class ProjectController : BaseController
     {        
-        private readonly IMapper mapper;
         private IProjectService projectService;
 
-        public ProjectController(IMapper mapper, IProjectService projectService)
+        public ProjectController(IMapper mapper, IProjectService projectService) : base(mapper)
         {
-            this.mapper = mapper;
             this.projectService = projectService;
         }
 

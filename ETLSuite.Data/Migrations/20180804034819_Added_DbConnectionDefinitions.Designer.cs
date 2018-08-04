@@ -4,14 +4,16 @@ using ETLSuite.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ETLSuite.Data.Migrations
 {
     [DbContext(typeof(ETLDataContext))]
-    partial class ETLDataContextModelSnapshot : ModelSnapshot
+    [Migration("20180804034819_Added_DbConnectionDefinitions")]
+    partial class Added_DbConnectionDefinitions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,21 +27,17 @@ namespace ETLSuite.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ConnectionString")
-                        .IsRequired();
+                    b.Property<string>("ConnectionString");
 
                     b.Property<DateTime?>("Created");
 
                     b.Property<string>("CreatedBy");
 
-                    b.Property<string>("Description");
-
                     b.Property<DateTime?>("Modified");
 
                     b.Property<string>("ModifiedBy");
 
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<string>("Name");
 
                     b.Property<int>("ProjectId");
 
@@ -52,7 +50,7 @@ namespace ETLSuite.Data.Migrations
                     b.ToTable("DbConnectionDefinitions");
 
                     b.HasData(
-                        new { Id = 1, ConnectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=ETLSuite_UploadSource;Integrated Security=True", Created = new DateTime(2018, 8, 3, 21, 26, 52, 944, DateTimeKind.Local), CreatedBy = "test", Description = "Sql Server 1 description", Modified = new DateTime(2018, 8, 3, 21, 26, 52, 944, DateTimeKind.Local), ModifiedBy = "test", Name = "Sql Server 1", ProjectId = 1, Type = 0 }
+                        new { Id = 1, ConnectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=ETLSuite_UploadSource;Integrated Security=True", Created = new DateTime(2018, 8, 3, 20, 48, 18, 259, DateTimeKind.Local), CreatedBy = "test", Modified = new DateTime(2018, 8, 3, 20, 48, 18, 259, DateTimeKind.Local), ModifiedBy = "test", Name = "Sql Server 1", ProjectId = 1, Type = 0 }
                     );
                 });
 
@@ -68,8 +66,7 @@ namespace ETLSuite.Data.Migrations
 
                     b.Property<int>("Level");
 
-                    b.Property<string>("Message")
-                        .IsRequired();
+                    b.Property<string>("Message");
 
                     b.Property<DateTime?>("Modified");
 
@@ -96,8 +93,7 @@ namespace ETLSuite.Data.Migrations
 
                     b.Property<string>("ModifiedBy");
 
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<string>("Name");
 
                     b.Property<int>("Status");
 
@@ -106,7 +102,7 @@ namespace ETLSuite.Data.Migrations
                     b.ToTable("Projects");
 
                     b.HasData(
-                        new { Id = 1, Created = new DateTime(2018, 8, 3, 21, 26, 52, 939, DateTimeKind.Local), CreatedBy = "test", Description = "Project 1 Description", Modified = new DateTime(2018, 8, 3, 21, 26, 52, 941, DateTimeKind.Local), ModifiedBy = "test", Name = "Project 1", Status = 0 }
+                        new { Id = 1, Created = new DateTime(2018, 8, 3, 20, 48, 18, 255, DateTimeKind.Local), CreatedBy = "test", Description = "Project 1 Description", Modified = new DateTime(2018, 8, 3, 20, 48, 18, 257, DateTimeKind.Local), ModifiedBy = "test", Name = "Project 1", Status = 0 }
                     );
                 });
 

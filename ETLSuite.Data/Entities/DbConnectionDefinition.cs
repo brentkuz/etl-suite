@@ -7,8 +7,8 @@ using System.Text;
 
 namespace ETLSuite.Data.Entities
 {
-    [Table("Projects")]
-    public class Project : EntityBase
+    [Table("DbConnectionDefinitions")]
+    public class DbConnectionDefinition : EntityBase
     {
         [Key]
         public int Id { get; set; }
@@ -16,8 +16,13 @@ namespace ETLSuite.Data.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         [Required]
-        public ProjectStatus Status { get; set; }
+        public string ConnectionString { get; set; }
+        [Required]
+        public DatabaseType Type { get; set; }
 
-        public ICollection<DbConnectionDefinition> DbConnectionDefinitions { get; set; }
+        public int ProjectId { get; set; }
+        [ForeignKey("ProjectId")]        
+        public virtual Project Project { get; set; }
+
     }
 }

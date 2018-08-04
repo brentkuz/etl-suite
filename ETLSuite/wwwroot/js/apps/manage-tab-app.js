@@ -82,16 +82,7 @@
                         notif.UI("An error occured loading the tab", true);
                         throw err;
                     }
-                },
-                GetClass: function (e) {
-                    console.log("GetClass")
-                    var tab = $(e.target).data("id");
-                    if (tab == this.CurrentTab) {
-                        el.removeClass("btn-default").addClass("btn-primary");
-                    } else {
-                        el.removeClass("btn-primary").addClass("btn-default");
-                    }
-                }
+                }    
             }
         })
 

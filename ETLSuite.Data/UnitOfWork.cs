@@ -9,6 +9,7 @@ namespace ETLSuite.Data
     {
         IProjectRepository ProjectRepository { get; }
         ILogEntryRepository LogEntryRepository { get; }
+        IDbConnectionDefinitionRepository DbConnectionDefinitionRepository { get; }
 
         int Save();
     }
@@ -17,6 +18,7 @@ namespace ETLSuite.Data
         private ETLDataContext context;
         private ILogEntryRepository logEntryRepository;
         private IProjectRepository projectRepository;
+        private IDbConnectionDefinitionRepository dbConnectionDefinitionRepository;
 
         public UnitOfWork(ETLDataContext context)
         {
@@ -40,6 +42,16 @@ namespace ETLSuite.Data
                 if (logEntryRepository == null)
                     logEntryRepository = new LogEntryRepository(context);
                 return logEntryRepository;
+            }
+        }
+
+        public IDbConnectionDefinitionRepository DbConnectionDefinitionRepository
+        {
+            get
+            {
+                if (dbConnectionDefinitionRepository == null)
+                    dbConnectionDefinitionRepository = new DbConnectionDefinitionRepository(context);
+                return dbConnectionDefinitionRepository;
             }
         }
 

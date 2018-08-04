@@ -38,11 +38,13 @@ namespace ETLSuite
 
             //Business
             services.AddTransient<IProjectService, ProjectService>();
+            services.AddTransient<IDbConnectionDefinitionService, DbConnectionDefinitionService>();
 
             //Data
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<ILogEntryRepository, LogEntryRepository>();
             services.AddTransient<IProjectRepository, ProjectRepository>();
+            services.AddTransient<IDbConnectionDefinitionRepository, DbConnectionDefinitionRepository>();
 
         }
 

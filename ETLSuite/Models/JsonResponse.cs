@@ -14,7 +14,7 @@ namespace ETLSuite.Models
             this.Notification = notification;
             this.Data = data;
         }
-        public bool Success { get; set; }
+        public bool Success { get; set; } = true;
         public string Notification { get; set; }
         public object Data { get; set; }
     }

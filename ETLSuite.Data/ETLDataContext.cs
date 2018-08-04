@@ -17,6 +17,7 @@ namespace ETLSuite.Data
 
         public DbSet<LogEntry> LogEntries { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<DbConnectionDefinition> DbConnectionDefinitions { get; set; }
 
         public override int SaveChanges()
         {
@@ -43,6 +44,21 @@ namespace ETLSuite.Data
                     Modified = DateTime.Now,
                     CreatedBy = "test",
                     ModifiedBy = "test"
+                }
+            );
+            mb.Entity<DbConnectionDefinition>().HasData(
+                new DbConnectionDefinition
+                {
+                    Id = 1,
+                    Name = "Sql Server 1",
+                    Description = "Sql Server 1 description",
+                    ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=ETLSuite_UploadSource;Integrated Security=True",
+                    Type = DatabaseType.SqlServer,
+                    Created = DateTime.Now,
+                    Modified = DateTime.Now,
+                    CreatedBy = "test",
+                    ModifiedBy = "test",
+                    ProjectId = 1
                 }
             );
         }

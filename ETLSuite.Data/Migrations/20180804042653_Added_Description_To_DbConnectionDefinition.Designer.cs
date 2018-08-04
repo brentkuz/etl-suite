@@ -4,14 +4,16 @@ using ETLSuite.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ETLSuite.Data.Migrations
 {
     [DbContext(typeof(ETLDataContext))]
-    partial class ETLDataContextModelSnapshot : ModelSnapshot
+    [Migration("20180804042653_Added_Description_To_DbConnectionDefinition")]
+    partial class Added_Description_To_DbConnectionDefinition
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

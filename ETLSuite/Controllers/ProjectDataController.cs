@@ -15,16 +15,14 @@ using static ETLSuite.Models.Project.ManageViewModel;
 
 namespace ETLSuite.Controllers
 {
-    public class ProjectDataController : Controller
+    public class ProjectDataController : BaseController
     {       
-        private readonly IMapper mapper;
         private IProjectService projectService;
         private ILogger<ProjectDataController> logger;
 
 
-        public ProjectDataController(IMapper mapper, IProjectService projectService, ILogger<ProjectDataController> logger)
+        public ProjectDataController(IMapper mapper, IProjectService projectService, ILogger<ProjectDataController> logger) : base(mapper)
         {
-            this.mapper = mapper;
             this.projectService = projectService;
             this.logger = logger;
         }

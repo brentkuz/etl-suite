@@ -16,9 +16,7 @@ namespace ETLSuite.Util
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<ProjectStatus, Dictionary<int, string>>().ConvertUsing(x => new Dictionary<int, string>());
-            });
-
-            
+            });            
 
             CreateMap<Project, ProjectSummaryViewModel>();
             CreateMap<Project, ProjectInfoViewModel>()
@@ -26,7 +24,8 @@ namespace ETLSuite.Util
                 .ForMember(dest => dest.StatusOptions, opts => opts.ResolveUsing(new ProjectStatusToDictionaryResolver()));
             CreateMap<ProjectInfoViewModel, Project>()
                 .ForMember(dest => dest.Status, opts => opts.MapFrom(src => (ProjectStatus)src.SelectedStatus));
-
+            CreateMap<DbConnectionDefinition, DbConnectionDefinitionSummaryViewModel>()
+                .ForMember(dest => dest.Type, opts => opts.MapFrom(src => src.Type.ToDisplay()));
         }
 
        
