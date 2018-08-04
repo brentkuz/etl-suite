@@ -42,33 +42,35 @@
                 };
 
                 this.GetProjects = function () {
-                    try {
-                        projectService.GetProjects().done(function (resp) {
-                            if (resp) {
-                                self.Projects = resp.Data;
-                                if (resp.Success == false) {
-                                    notif.UI(resp.Notification, true);
-                                }
+                    projectService.GetProjects().done(function (resp) {
+                        if (resp) {
+                            self.Projects = resp.Data;
+                            if (resp.Success == false) {
+                                notif.UI(resp.Notification, true);
                             }
-                        });
-                    } catch (err) {
-                        notif.UI("An error occurred loading projects", true);
-                        throw err;
-                    }
+                        }
+                    });
                 };
 
                 //init
-                var prevSess = session.Get(name);
-                if (prevSess != null) {
-                    this.SortCol = prevSess.SortCol;
-                    this.SortDir = prevSess.SortDir;
-                    this.SearchPhrase = prevSess.SearchPhrase;
-                } else {
-                    this.SortCol = defaultSort.Col;
-                    this.SortDir = defaultSort.Dir;
-                }
+                try {
+                    var prevSess = session.Get(name);
+                    if (prevSess != null) {
+                        this.SortCol = prevSess.SortCol;
+                        this.SortDir = prevSess.SortDir;
+                        this.SearchPhrase = prevSess.SearchPhrase;
+                    } else {
+                        this.SortCol = defaultSort.Col;
+                        this.SortDir = defaultSort.Dir;
+                    }
 
-                this.GetProjects();
+                
+                    this.GetProjects();
+                } catch (err) {
+                    notif.UI("An error occurred loading projects", true);
+                    throw err;
+                }
+                
             },
             methods: {
                 Sort: function (col) {

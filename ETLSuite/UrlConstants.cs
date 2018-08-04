@@ -19,5 +19,8 @@ namespace ETLSuite
         public string ProjectData_GetProjectInfo { get; } = "/ProjectData/GetProjectInfo/";
         public string ProjectData_SaveProjectInfo { get; } = "/ProjectData/SaveProjectInfo";
 
+        //DbConnectionData
+        public string DbConnectionData_GetAll { get; } = "/DbConnectionData/GetAll?projectId=";
+        public string DbConnectionData_GetDefinition { get; } = "/DbConnectionData/GetDefinition/";
     }
 }

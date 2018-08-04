@@ -10,17 +10,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ETLSuite.Controllers
 {
-    public class DbConnectionController : BaseController
+    public class DbConnectionDataController : BaseController
     {
         private IDbConnectionDefinitionService connectionService;
 
-        public DbConnectionController(IMapper mapper, IDbConnectionDefinitionService connectionService) : base(mapper)
+        public DbConnectionDataController(IMapper mapper, IDbConnectionDefinitionService connectionService) : base(mapper)
         {
             this.connectionService = connectionService;
         }
 
         [HttpGet]
-        public IActionResult Index(int projectId)
+        public IActionResult GetAll(int projectId)
         {
             var response = new JsonResponse();
             var definitions = connectionService.GetByProjectId(projectId);
@@ -31,6 +31,12 @@ namespace ETLSuite.Controllers
             response.Data = vms;
 
             return Json(response);
+        }
+
+        [HttpGet]
+        public IActionResult GetDefinition(int id)
+        {
+            return null;
         }
     }
 }

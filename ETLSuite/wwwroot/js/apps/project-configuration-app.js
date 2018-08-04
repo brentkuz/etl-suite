@@ -1,7 +1,7 @@
 ﻿
 //Project Configuration App
 
-(function ($, Vue, util) {
+(function ($, Vue, util, initDbConnectionApp) {
     var name = "ProjectConfigurationApp";
     util.CheckDependencies(name, arguments);
 
@@ -9,7 +9,8 @@
     app.Initializers.ProjectConfigurationApp = function (projectId) {
         console.debug(name + " init");
 
+        initDbConnectionApp(projectId);
 
     };
 
-})(jQuery, Vue, app.Util);
+})(jQuery, Vue, app.Util, app.Initializers.DbConnectionApp);
