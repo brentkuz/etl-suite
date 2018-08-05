@@ -12,15 +12,17 @@ namespace ETLSuite
     {
         //Project 
         public string Project_Create { get; } = "/Project/Create?name=";
-        public string Project_GetTab { get; } = "/Project/GetTab?tab=";
+        public string Project_GetTab { get; } = "/Project/GetTabTemplate?tab=";
+        public string Project_GetConfigurationEditTemplate { get; } = "/Project/GetConfigurationEditTemplate?type=";
 
         //ProjectData
         public string ProjectData_GetProjects { get; } = "/ProjectData/GetProjects";
         public string ProjectData_GetProjectInfo { get; } = "/ProjectData/GetProjectInfo/";
         public string ProjectData_SaveProjectInfo { get; } = "/ProjectData/SaveProjectInfo";
 
-        //DbConnectionData
-        public string DbConnectionData_GetAll { get; } = "/DbConnectionData/GetAll?projectId=";
-        public string DbConnectionData_GetDefinition { get; } = "/DbConnectionData/GetDefinition/";
+
+        //ProjectConfigurationData
+        public string DbConnectionData_GetAll { get; } = "/ProjectConfigurationData/GetAll?projectId=";
+        public string DbConnectionData_GetDefinition { get; } = "/ProjectConfigurationData/GetDefinition/";
     }
 }

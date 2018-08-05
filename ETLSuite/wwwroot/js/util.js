@@ -73,16 +73,33 @@
     };  
 
     //load urls
-    //$(function () {
-        var conf = $("#config").html();
-        if (conf) {
-            util.Config = JSON.parse(conf);
-        }
-        var scr = $("#urlConfig").html();
-        if (scr) {
-            util.Urls = JSON.parse(scr);
-        }
+    var conf = $("#config").html();
+    if (conf) {
+        util.Config = JSON.parse(conf);
+    }
 
-    //})
+    //load urls
+    var urls = $("#urlConfig").html();
+    if (urls) {
+        util.Urls = JSON.parse(urls);
+    }
+
+    //init modals
+    function InitModal(el) {
+        return {
+            SetTemplate: function (template) {
+                $(el).find(".modal-content").html(template);
+            },
+            Show: function () {
+                $(el).modal("show");
+            },
+            Hide: function () {
+                $(el).modal("hide");
+            }
+        }
+    }
+    util.AppModal = InitModal("#appModal");
+
+    
 
 })(jQuery, app.Util);

@@ -1,7 +1,7 @@
 ﻿
-//Db Connection Data Service
+//Project Configuration Data Service
 (function ($, util, services) {
-    var name = "DbConnectionService";
+    var name = "ProjectConfigurationService";
     util.CheckDependencies(name, arguments);
 
     var config = util.Config;
@@ -13,8 +13,11 @@
                 return resp;
             });
     }
+    function GetDefinition(id) {
+        
+    }
 
-    services.DbConnectionService = app.Services.DbConnectionService || {
+    services.ProjectConfigurationService = app.Services.DbConnectionService || {
         GetAllDefinitions: GetAllDefinitions
     };
 

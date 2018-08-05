@@ -47,10 +47,17 @@
         </footer>
     </div>
 
+    <div class="modal fade" id="appModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                
+            </div>
+        </div>
+    </div>
 
 
     @RenderSection("config", required: false)
-    
+
     <environment include="Development">
         @* vendor *@
         <script src="~/vendor/jquery/jquery.js"></script>

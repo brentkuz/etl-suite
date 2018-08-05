@@ -10,11 +10,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ETLSuite.Controllers
 {
-    public class DbConnectionDataController : BaseController
+    public class ProjectConfigurationDataController : BaseController
     {
         private IDbConnectionDefinitionService connectionService;
 
-        public DbConnectionDataController(IMapper mapper, IDbConnectionDefinitionService connectionService) : base(mapper)
+        public ProjectConfigurationDataController(IMapper mapper, IDbConnectionDefinitionService connectionService) : base(mapper)
         {
             this.connectionService = connectionService;
         }

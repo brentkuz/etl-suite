@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 using ETLSuite.Models;
 using static ETLSuite.Models.Project.ManageViewModel;
 
-namespace ETLSuite.Tests.Web
+namespace ETLSuite.Tests.Web.Models
 {
     [TestClass]
     public class ViewModelBase_Unit

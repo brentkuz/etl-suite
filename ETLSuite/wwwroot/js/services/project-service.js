@@ -13,8 +13,9 @@
                 return resp;
             });
     }
-    function GetTab(tab) {
-        return $.get(urls.Project_GetTab + tab, function (resp) {
+    function GetTabTemplate(tab) {
+        return $.get(urls.Project_GetTab + tab,
+            function (resp) {
                 return resp;
             },
             "html"
@@ -32,12 +33,22 @@
                 return resp;
             });
     }
+    function GetConfigurationEditTemplate(configType) {
+        return $.get(urls.Project_GetConfigurationEditTemplate + configType,
+            function (resp) {
+                return resp;
+            },
+            "html"
+        )
+           
+    }
 
     services.ProjectService = app.Services.ProjectService || {
         GetProjects: GetProjects,
-        GetTab: GetTab,
+        GetTabTemplate: GetTabTemplate,
         GetProjectInfo: GetProjectInfo,
-        SaveProjectInfo: SaveProjectInfo
+        SaveProjectInfo: SaveProjectInfo,
+        GetConfigurationEditTemplate: GetConfigurationEditTemplate
     };
 
 })(jQuery, app.Util, app.Services);

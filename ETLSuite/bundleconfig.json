@@ -33,7 +33,7 @@
       //services
       "wwwroot/js/services/project-service.js",
       "wwwroot/js/services/schema-tree-service.js",
-      "wwwroot/js/services/db-connection-service.js",
+      "wwwroot/js/services/project-configuration-service.js",
 
       //apps
       "wwwroot/js/apps/schema-tree-app.js",

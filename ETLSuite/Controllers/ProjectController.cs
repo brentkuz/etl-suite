@@ -4,6 +4,7 @@ using System;
 using AutoMapper;
 using ETLSuite.Business.Services;
 using ETLSuite.Crosscutting;
+using ETLSuite.Crosscutting.Enums;
 using ETLSuite.Data.Entities;
 using ETLSuite.Models.Project;
 using Microsoft.AspNetCore.Mvc;
@@ -49,10 +50,17 @@ namespace ETLSuite.Controllers
             };
             return View(vm);
         }
-        public IActionResult GetTab(string tab)
+        public IActionResult GetTabTemplate(string tab)
         {
             ManageProjectTab manageProjectTab = (ManageProjectTab)Enum.Parse(typeof(ManageProjectTab), tab);
             var viewName = Constants.TabViewPath + manageProjectTab.ToString() + Constants.PartialViewEnding;
+            return PartialView(viewName);
+        }
+
+        public IActionResult GetConfigurationEditTemplate(string type)
+        {
+            ConfigurationEditType configTab = (ConfigurationEditType)Enum.Parse(typeof(ConfigurationEditType), type);
+            var viewName = Constants.ConfigurationEditModalViewPath + configTab.ToString() + Constants.PartialViewEnding;
             return PartialView(viewName);
         }
 

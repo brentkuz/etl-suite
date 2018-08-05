@@ -38,7 +38,7 @@
             },
             created: function () {
                 this.InitTab = function (tab, projectId) {
-                    projectService.GetTab(tab).done(function (resp) {
+                    projectService.GetTabTemplate(tab).done(function (resp) {
                         //load template
                         $(contentTargetEl).html(resp);
 

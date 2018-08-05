@@ -63,6 +63,7 @@
                     e.preventDefault();
                     var self = this;
                     try {
+                        self.SaveSuccess = false;
                         projectService.SaveProjectInfo({
                             Id: this.Id,
                             Name: this.Name,
