@@ -50,17 +50,15 @@ namespace ETLSuite.Controllers
             };
             return View(vm);
         }
-        public IActionResult GetTabTemplate(string tab)
+        public IActionResult GetTabTemplate(ManageProjectTab tab)
         {
-            ManageProjectTab manageProjectTab = (ManageProjectTab)Enum.Parse(typeof(ManageProjectTab), tab);
-            var viewName = Constants.TabViewPath + manageProjectTab.ToString() + Constants.PartialViewEnding;
+            var viewName = Constants.TabViewPath + tab.ToString() + Constants.PartialViewEnding;
             return PartialView(viewName);
         }
 
-        public IActionResult GetConfigurationEditTemplate(string type)
+        public IActionResult GetDbConnectionEditTemplate(DatabaseType type)
         {
-            ConfigurationEditType configTab = (ConfigurationEditType)Enum.Parse(typeof(ConfigurationEditType), type);
-            var viewName = Constants.ConfigurationEditModalViewPath + configTab.ToString() + Constants.PartialViewEnding;
+            var viewName = Constants.DbConnectionEditModalViewPath + type.ToString() + Constants.DbConnectionEditPartialViewEnding;
             return PartialView(viewName);
         }
 

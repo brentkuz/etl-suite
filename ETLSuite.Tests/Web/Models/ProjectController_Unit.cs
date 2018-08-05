@@ -25,23 +25,23 @@ namespace ETLSuite.Tests.Web.Models
 
             var toGet = ManageProjectTab.ProjectInfo;
 
-            var res = ctrl.GetTabTemplate(toGet.ToString()) as PartialViewResult;
+            var res = ctrl.GetTabTemplate(toGet) as PartialViewResult;
 
             Assert.AreEqual("~/Views/Project/Tabs/ProjectInfoPartial.cshtml", res.ViewName);
         }
 
         [TestMethod]
-        public void GetEditConfigurationTemplate_ResolvesCorrectTemplate()
+        public void GetDbConnectionEditTemplate_ResolvesCorrectTemplate()
         {
             var mapperMock = new Mock<IMapper>();
             var projectServiceMock = new Mock<IProjectService>();
             var ctrl = new ProjectController(mapperMock.Object, projectServiceMock.Object);
 
-            var toGet = ConfigurationEditType.DbConnectionEdit;
+            var toGet = DatabaseType.SqlServer;
 
-            var res = ctrl.GetConfigurationEditTemplate(toGet.ToString()) as PartialViewResult;
+            var res = ctrl.GetDbConnectionEditTemplate(toGet) as PartialViewResult;
 
-            Assert.AreEqual("~/Views/Project/Tabs/EditModals/DbConnectionEditPartial.cshtml", res.ViewName);
+            Assert.AreEqual("~/Views/Project/Tabs/EditModals/DbConnection/SqlServerConnectionEditPartial.cshtml", res.ViewName);
         }
     }
 }

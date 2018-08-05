@@ -33,13 +33,13 @@
                 return resp;
             });
     }
-    function GetConfigurationEditTemplate(configType) {
-        return $.get(urls.Project_GetConfigurationEditTemplate + configType,
+    function GetDbConnectionEditTemplate(configType) {
+        return $.get(urls.Project_GetDbConnectionEditTemplate + configType,
             function (resp) {
                 return resp;
             },
             "html"
-        )
+        );
            
     }
 
@@ -48,7 +48,7 @@
         GetTabTemplate: GetTabTemplate,
         GetProjectInfo: GetProjectInfo,
         SaveProjectInfo: SaveProjectInfo,
-        GetConfigurationEditTemplate: GetConfigurationEditTemplate
+        GetDbConnectionEditTemplate: GetDbConnectionEditTemplate
     };
 
 })(jQuery, app.Util, app.Services);

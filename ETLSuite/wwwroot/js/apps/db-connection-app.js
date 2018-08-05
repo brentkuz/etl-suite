@@ -5,9 +5,10 @@
     var name = "DbConnectionApp";
     util.CheckDependencies(name, arguments);
 
-    var template = "DbConnectionEdit";
 
     var modal = util.AppModal;
+
+    var tmplCache = {};
 
     //ctor
     app.Initializers.DbConnectionApp = function (projectId) {
@@ -18,8 +19,7 @@
         var app = new Vue({
             el: "#dbConnectionApp",
             data: {
-                Definitions: [],
-                EditTemplate: null
+                Definitions: []
             },
             created: function () {
                 var self = this;
@@ -34,28 +34,37 @@
                             }
 
                         });
-                };               
+                };  
+                this.GetById = function (id) {
+
+                }
 
                 //init
                 try {
                     this.GetAll();
-                    //get template and cache it
-                    projectService.GetConfigurationEditTemplate(template).done(function (resp) {
-                        if (resp) {
-                            self.EditTemplate = resp;
-                        }
-                    });
                 } catch (err) {
                     notif.UI("An error occurred loading connection definitions.", true);
                     throw err;
                 }
             },
             methods: {
-                EditConnection: function (id) {
-                    if (id && this.EditTemplate) {
+                EditConnection: function (id, dbType) {
+                    if (id !== undefined && dbType != undefined) {
                         try {
-                            modal.SetTemplate(this.EditTemplate);
-                            modal.Show();
+                            if (tmplCache.hasOwnProperty(dbType)) {
+                                //use cached template
+                                modal.SetTemplate(tmplCache[dbType]);
+                                modal.Show();
+                            } else {
+                                //get template and cache it
+                                projectService.GetDbConnectionEditTemplate(dbType).done(function (resp) {
+                                    if (resp) {
+                                        modal.SetTemplate(resp);
+                                        modal.Show();
+                                        tmplCache[dbType] = resp;
+                                    }
+                                });
+                            }
                         } catch (err) {
                             notif.UI("An error occurred loading the connection definition.", true);
                             throw err;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ETLSuite.Crosscutting.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace ETLSuite.Models.Project
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string Type { get; set; }
+        public DatabaseType Type { get; set; }
+        public string TypeDisplay { get; set; }
     }
 }

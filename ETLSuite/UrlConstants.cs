@@ -13,7 +13,7 @@ namespace ETLSuite
         //Project 
         public string Project_Create { get; } = "/Project/Create?name=";
         public string Project_GetTab { get; } = "/Project/GetTabTemplate?tab=";
-        public string Project_GetConfigurationEditTemplate { get; } = "/Project/GetConfigurationEditTemplate?type=";
+        public string Project_GetDbConnectionEditTemplate { get; } = "/Project/GetDbConnectionEditTemplate?type=";
 
         //ProjectData
         public string ProjectData_GetProjects { get; } = "/ProjectData/GetProjects";

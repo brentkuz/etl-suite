@@ -23,7 +23,7 @@ namespace ETLSuite.Controllers
         public IActionResult GetAll(int projectId)
         {
             var response = new JsonResponse();
-            var definitions = connectionService.GetByProjectId(projectId);
+            var definitions = connectionService.GetAllByProjectId(projectId);
             var vms = new List<DbConnectionDefinitionSummaryViewModel>();
             foreach (var def in definitions)
                 vms.Add(mapper.Map<DbConnectionDefinitionSummaryViewModel>(def));
@@ -36,6 +36,8 @@ namespace ETLSuite.Controllers
         [HttpGet]
         public IActionResult GetDefinition(int id)
         {
+
+
             return null;
         }
     }

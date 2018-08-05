@@ -25,7 +25,7 @@ namespace ETLSuite.Util
             CreateMap<ProjectInfoViewModel, Project>()
                 .ForMember(dest => dest.Status, opts => opts.MapFrom(src => (ProjectStatus)src.SelectedStatus));
             CreateMap<DbConnectionDefinition, DbConnectionDefinitionSummaryViewModel>()
-                .ForMember(dest => dest.Type, opts => opts.MapFrom(src => src.Type.ToDisplay()));
+                .ForMember(dest => dest.TypeDisplay, opts => opts.MapFrom(src => src.Type.ToDisplay()));
         }
 
        

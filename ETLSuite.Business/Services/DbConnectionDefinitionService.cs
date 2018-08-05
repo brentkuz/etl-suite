@@ -9,7 +9,8 @@ namespace ETLSuite.Business.Services
 {
     public interface IDbConnectionDefinitionService
     {
-        IEnumerable<DbConnectionDefinition> GetByProjectId(int projectId);
+        IEnumerable<DbConnectionDefinition> GetAllByProjectId(int projectId);
+
     }
     public class DbConnectionDefinitionService : ServiceBase, IDbConnectionDefinitionService
     {
@@ -17,10 +18,13 @@ namespace ETLSuite.Business.Services
         {
         }
 
-        public IEnumerable<DbConnectionDefinition> GetByProjectId(int projectId)
+        public IEnumerable<DbConnectionDefinition> GetAllByProjectId(int projectId)
         {
             return uow.DbConnectionDefinitionRepository.Get()
                 .Where(x => x.ProjectId == projectId);
         }
+
+        
+        
     }
 }

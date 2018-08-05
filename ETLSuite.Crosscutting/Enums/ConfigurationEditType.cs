@@ -6,7 +6,9 @@ namespace ETLSuite.Crosscutting.Enums
 {
     public enum ConfigurationEditType
     {
-        DbConnectionEdit,
+        SqlServerConnectionEdit,
+        OracleConnectionEdit,
+        ODBCConnectionEdit,
         TransportMethodEdit,
         LoggingEdit
     }

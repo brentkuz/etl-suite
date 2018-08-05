@@ -48,7 +48,7 @@
                         if (init)
                             init(projectId);
                         else
-                            util.Log(name, "Failed to init " + tab + " tab app.")
+                            util.Log(name, "Failed to init " + tab + " tab app.");
                     });
                 };
                 this.InitTabApp = function (tab, projectId) {
@@ -73,7 +73,6 @@
             },
             methods: {
                 ChangeTab: function (e) {  
-                    console.log("ChangeTab")
                     try {
                         var tab = $(e.target).data("id");
                         this.InitTab(tab, config.ProjectId);
