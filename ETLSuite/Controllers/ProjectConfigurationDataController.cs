@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using ETLSuite.Business.Services;
 using ETLSuite.Models;
+using ETLSuite.Models.Factories;
 using ETLSuite.Models.Project;
 using ETLSuite.Models.Project.Tabs.DbConnection;
 using ETLSuite.Models.Project.Tabs.EditModals.DbConnection;
@@ -16,10 +17,12 @@ namespace ETLSuite.Controllers
     public class ProjectConfigurationDataController : BaseController<ProjectConfigurationDataController>
     {
         private IDbConnectionDefinitionService connectionService;
+        private IDbConnectionDefinitionViewModelFactory vmFactory;
 
-        public ProjectConfigurationDataController(IMapper mapper, IDbConnectionDefinitionService connectionService, ILogger<ProjectConfigurationDataController> logger) : base(mapper, logger)
+        public ProjectConfigurationDataController(IMapper mapper, ILogger<ProjectConfigurationDataController> logger, IDbConnectionDefinitionService connectionService, IDbConnectionDefinitionViewModelFactory vmFactory) : base(mapper, logger)
         {
             this.connectionService = connectionService;
+            this.vmFactory = vmFactory;
         }
 
         [HttpGet]
@@ -54,7 +57,7 @@ namespace ETLSuite.Controllers
             {
                 var definition = connectionService.GetById(id);
 
-
+                response.Data = vmFactory.GetViewModel(definition);
             }
             catch (Exception ex)
             {

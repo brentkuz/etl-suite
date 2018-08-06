@@ -7,6 +7,7 @@ using ETLSuite.Business.Factories;
 using ETLSuite.Business.Services;
 using ETLSuite.Data;
 using ETLSuite.Data.Repositories;
+using ETLSuite.Models.Factories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -37,10 +38,9 @@ namespace ETLSuite
             var connStr = Configuration.GetSection("ConnectionStrings").GetValue<string>("ETLDataConnectionString");
             services.AddDbContext<ETLDataContext>(options => options.UseSqlServer(connStr));
 
-            //Business
-            ConfigureBusiness(services);
 
-            //Data
+            ConfigureWeb(services);
+            ConfigureBusiness(services);            
             ConfigureData(services);
 
         }
@@ -76,6 +76,10 @@ namespace ETLSuite
             });
         }
 
+        public void ConfigureWeb(IServiceCollection services)
+        {
+            services.AddTransient<IDbConnectionDefinitionViewModelFactory, DbConnectionDefinitionViewModelFactory>();
+        }
 
         private void ConfigureBusiness(IServiceCollection services)
         {
