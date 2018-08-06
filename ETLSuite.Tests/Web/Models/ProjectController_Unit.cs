@@ -9,6 +9,7 @@ using ETLSuite.Business.Services;
 using static ETLSuite.Models.Project.ManageViewModel;
 using Microsoft.AspNetCore.Mvc;
 using ETLSuite.Crosscutting.Enums;
+using Microsoft.Extensions.Logging;
 
 namespace ETLSuite.Tests.Web.Models
 {
@@ -21,7 +22,8 @@ namespace ETLSuite.Tests.Web.Models
         {
             var mapperMock = new Mock<IMapper>();
             var projectServiceMock = new Mock<IProjectService>();
-            var ctrl = new ProjectController(mapperMock.Object, projectServiceMock.Object);
+            var logMock = new Mock<ILogger<ProjectController>>();
+            var ctrl = new ProjectController(mapperMock.Object, projectServiceMock.Object, logMock.Object);
 
             var toGet = ManageProjectTab.ProjectInfo;
 
@@ -35,7 +37,8 @@ namespace ETLSuite.Tests.Web.Models
         {
             var mapperMock = new Mock<IMapper>();
             var projectServiceMock = new Mock<IProjectService>();
-            var ctrl = new ProjectController(mapperMock.Object, projectServiceMock.Object);
+            var logMock = new Mock<ILogger<ProjectController>>();
+            var ctrl = new ProjectController(mapperMock.Object, projectServiceMock.Object, logMock.Object);
 
             var toGet = DatabaseType.SqlServer;
 

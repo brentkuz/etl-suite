@@ -8,7 +8,7 @@
     var urls = util.Urls;
 
     function GetAllDefinitions(projectId) {
-        return $.getJSON(urls.DbConnectionData_GetAll + projectId)
+        return $.getJSON(urls.DbConnectionData_GetAllDbConnections + projectId)
             .done(function (resp) {
                 return resp;
             });

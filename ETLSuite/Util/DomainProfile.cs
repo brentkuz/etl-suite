@@ -2,6 +2,9 @@
 using ETLSuite.Crosscutting.Enums;
 using ETLSuite.Data.Entities;
 using ETLSuite.Models.Project;
+using ETLSuite.Models.Project.Tabs;
+using ETLSuite.Models.Project.Tabs.DbConnection;
+using ETLSuite.Models.Project.Tabs.EditModals.DbConnection;
 using System;
 using System.Collections.Generic;
 using System.Linq;

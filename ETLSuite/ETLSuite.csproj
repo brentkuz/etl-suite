@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Models\Factories\" />
     <Folder Include="wwwroot\dist\" />
     <Folder Include="wwwroot\vendor\" />
   </ItemGroup>

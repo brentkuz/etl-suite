@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ETLSuite.Business.Factories;
+using ETLSuite.Business.Objects;
 using ETLSuite.Data;
 using ETLSuite.Data.Entities;
 
@@ -10,12 +12,14 @@ namespace ETLSuite.Business.Services
     public interface IDbConnectionDefinitionService
     {
         IEnumerable<DbConnectionDefinition> GetAllByProjectId(int projectId);
-
+        DbConnectionDefinitionBase GetById(int id);
     }
     public class DbConnectionDefinitionService : ServiceBase, IDbConnectionDefinitionService
     {
-        public DbConnectionDefinitionService(IUnitOfWork uow) : base(uow)
+        private IDbConnectionDefinitionFactory definitionFactory;
+        public DbConnectionDefinitionService(IUnitOfWork uow, IDbConnectionDefinitionFactory definitionFactory) : base(uow)
         {
+            this.definitionFactory = definitionFactory;
         }
 
         public IEnumerable<DbConnectionDefinition> GetAllByProjectId(int projectId)
@@ -24,7 +28,13 @@ namespace ETLSuite.Business.Services
                 .Where(x => x.ProjectId == projectId);
         }
 
-        
+        public DbConnectionDefinitionBase GetById(int id)
+        {
+            var entity = uow.DbConnectionDefinitionRepository.Get()
+                .Where(x => x.Id == id).SingleOrDefault();
+
+            return definitionFactory.GetConnectionDefinition(entity);
+        }
         
     }
 }

@@ -5,11 +5,14 @@ using System.Text;
 
 namespace ETLSuite.Business.Objects
 {
-    public class SqlServerConnectionDefinition
+    public class SqlServerConnectionDefinition : DbConnectionDefinitionBase
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public SqlConnectionStringBuilder ConnectionString { get; set; }
+        public SqlServerConnectionDefinition() { }
+        public SqlServerConnectionDefinition(int id, string name, string description, string connectionString) : base(id, name, description)
+        {
+            ConnectionString = new SqlConnectionStringBuilder(connectionString);   
+        }
+
+        public SqlConnectionStringBuilder ConnectionString { get; private set; }
     }
 }

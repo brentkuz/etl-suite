@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using ETLSuite.Business.Factories;
 using ETLSuite.Business.Services;
 using ETLSuite.Data;
 using ETLSuite.Data.Repositories;
@@ -37,14 +38,10 @@ namespace ETLSuite
             services.AddDbContext<ETLDataContext>(options => options.UseSqlServer(connStr));
 
             //Business
-            services.AddTransient<IProjectService, ProjectService>();
-            services.AddTransient<IDbConnectionDefinitionService, DbConnectionDefinitionService>();
+            ConfigureBusiness(services);
 
             //Data
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<ILogEntryRepository, LogEntryRepository>();
-            services.AddTransient<IProjectRepository, ProjectRepository>();
-            services.AddTransient<IDbConnectionDefinitionRepository, DbConnectionDefinitionRepository>();
+            ConfigureData(services);
 
         }
 
@@ -77,6 +74,21 @@ namespace ETLSuite
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+
+        private void ConfigureBusiness(IServiceCollection services)
+        {
+            services.AddTransient<IProjectService, ProjectService>();
+            services.AddTransient<IDbConnectionDefinitionService, DbConnectionDefinitionService>();
+            services.AddTransient<IDbConnectionDefinitionFactory, DbConnectionDefinitionFactory>();
+        }
+        private void ConfigureData(IServiceCollection services)
+        {
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<ILogEntryRepository, LogEntryRepository>();
+            services.AddTransient<IProjectRepository, ProjectRepository>();
+            services.AddTransient<IDbConnectionDefinitionRepository, DbConnectionDefinitionRepository>();
         }
     }
 }

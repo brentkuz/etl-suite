@@ -9,19 +9,18 @@ using ETLSuite.Business.Services;
 using ETLSuite.Data.Entities;
 using ETLSuite.Models;
 using ETLSuite.Models.Project;
+using ETLSuite.Models.Project.Tabs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using static ETLSuite.Models.Project.ManageViewModel;
 
 namespace ETLSuite.Controllers
 {
-    public class ProjectDataController : BaseController
+    public class ProjectDataController : BaseController<ProjectDataController>
     {       
         private IProjectService projectService;
-        private ILogger<ProjectDataController> logger;
 
-
-        public ProjectDataController(IMapper mapper, IProjectService projectService, ILogger<ProjectDataController> logger) : base(mapper)
+        public ProjectDataController(IMapper mapper, IProjectService projectService, ILogger<ProjectDataController> logger) : base(mapper, logger)
         {
             this.projectService = projectService;
             this.logger = logger;

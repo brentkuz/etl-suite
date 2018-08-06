@@ -8,15 +8,16 @@ using ETLSuite.Crosscutting.Enums;
 using ETLSuite.Data.Entities;
 using ETLSuite.Models.Project;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using static ETLSuite.Models.Project.ManageViewModel;
 
 namespace ETLSuite.Controllers
 {
-    public class ProjectController : BaseController
+    public class ProjectController : BaseController<ProjectController>
     {        
         private IProjectService projectService;
 
-        public ProjectController(IMapper mapper, IProjectService projectService) : base(mapper)
+        public ProjectController(IMapper mapper, IProjectService projectService, ILogger<ProjectController> logger) : base(mapper, logger)
         {
             this.projectService = projectService;
         }

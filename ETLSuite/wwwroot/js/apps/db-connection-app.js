@@ -28,7 +28,7 @@
                         .done(function (resp) {
                             if (resp) {
                                 self.Definitions = resp.Data;
-                                if (resp.Success == false) {
+                                if (resp.Success === false) {
                                     notif.UI(resp.Notification, true);
                                 }
                             }
@@ -37,7 +37,7 @@
                 };  
                 this.GetById = function (id) {
 
-                }
+                };
 
                 //init
                 try {
@@ -49,7 +49,7 @@
             },
             methods: {
                 EditConnection: function (id, dbType) {
-                    if (id !== undefined && dbType != undefined) {
+                    if (id !== undefined && dbType !== undefined) {
                         try {
                             if (tmplCache.hasOwnProperty(dbType)) {
                                 //use cached template
