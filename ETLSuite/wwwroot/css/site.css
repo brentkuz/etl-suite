@@ -38,7 +38,8 @@
 /*Custom*/
 .error-text{color:red;}
 .bottom-margin-10{margin-bottom:10px;}
-
+.inline{display:inline;}
+.inline-block{display:inline-block;}
 
 /*Project Management*/
 .active-tab{

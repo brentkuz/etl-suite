@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using ETLSuite.Business.Services;
+using ETLSuite.Crosscutting.Enums;
 using ETLSuite.Models;
 using ETLSuite.Models.Factories;
 using ETLSuite.Models.Project;
@@ -65,6 +66,15 @@ namespace ETLSuite.Controllers
                 response.Notification = "An error occurred retrieving the Db Connection.";
                 logger.LogError(ex, response.Notification);
             }
+            return Json(response);
+        }
+
+        [HttpPost]
+        public IActionResult SaveConnection(object vm, DatabaseType type)
+        {
+            var response = new JsonResponse();
+
+
             return Json(response);
         }
     }

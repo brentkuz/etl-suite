@@ -1,20 +1,80 @@
-﻿
-<form>
-    <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Sql Server Connection</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <div class="row">
-            <div class="col-sm-12">
-                Sql Server
+﻿<div id="sqlServerEditApp">
+    <form v-on:submit.prevent="Submit">
+        <div class="modal-header">
+            <h4 class="modal-title inline" id="exampleModalLabel">Sql Server Connection</h4>&nbsp;
+            <save-success v-model="SaveSuccess"></save-success>
+            <span id="sqlEditNotification"></span>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>Name</label>
+                    <input type="text" class="form-control" v-model="Selected.Name" required />
+                </div>
+                <div class="col-sm-6">
+                    <label>Description</label>
+                    <textarea class="form-control" v-model="Selected.Description"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label>Connection String</label>
+                    <input type="text" class="form-control" v-model="Selected.ConnectionStringDisplay" readonly/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>Data Source</label>
+                    <input type="text" class="form-control" v-model="Selected.DataSource" required />
+                </div>
+                <div class="col-sm-6">
+                    <label>Initial Catalog</label>
+                    <input type="text" class="form-control" v-model="Selected.InitialCatalog" required/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>Connection Retry Count</label>
+                    <input type="number" class="form-control" v-model="Selected.ConnectionRetryCount" min="0"/>
+                </div>
+                <div class="col-sm-6">
+                    <label>Connection Retry Interval</label>
+                    <input type="number" class="form-control" v-model="Selected.ConnectionRetryInterval" min="0"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label>Integrated Security</label>
+                    <input type="checkbox" v-model="Selected.IntegratedSecurity" />
+                </div>
+                <div class="col-sm-8" v-show="Selected.IntegratedSecurity == false">
+                    <div class="inline-block">
+                        <label>User ID</label>
+                        <input class="form-control" v-model="Selected.UserID" />
+                    </div>
+                    <div class="inline-block">
+                        <label>Password</label>
+                        <input class="form-control" v-model="Selected.Password" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>Multiple Active Result Sets</label>
+                    <input type="checkbox" v-model="Selected.MultipleActiveResultSets" />
+                </div>
+                <div class="col-sm-6">
+                    <label>Encrypt</label>
+                    <input type="checkbox" v-model="Selected.Encrypt" />
+                </div>
             </div>
         </div>
-    </div>
-    <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-    </div>
-</form>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+    </form>
+</div>

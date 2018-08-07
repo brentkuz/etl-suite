@@ -59,11 +59,10 @@
                 }
             },
             methods: {
-                submit: function (e) {
-                    e.preventDefault();
+                Submit: function (e) {
+                    //e.preventDefault();
                     var self = this;
-                    try {
-                        self.SaveSuccess = false;
+                    try {                        
                         projectService.SaveProjectInfo({
                             Id: this.Id,
                             Name: this.Name,

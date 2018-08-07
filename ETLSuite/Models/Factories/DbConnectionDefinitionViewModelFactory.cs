@@ -27,6 +27,7 @@ namespace ETLSuite.Models.Factories
                         Id = d.Id,
                         Name = d.Name,
                         Description = d.Description,
+                        Type = d.Type.ToString(),
                         DataSource = cs.DataSource,
                         InitialCatalog = cs.InitialCatalog,
                         ConnectionRetryCount = cs.ConnectRetryCount,

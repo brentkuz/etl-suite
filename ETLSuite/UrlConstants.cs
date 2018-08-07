@@ -24,5 +24,7 @@ namespace ETLSuite
         //ProjectConfigurationData
         public string DbConnectionData_GetAllDbConnections { get; } = "/ProjectConfigurationData/GetAllDbConnections?projectId=";
         public string DbConnectionData_GetDefinition { get; } = "/ProjectConfigurationData/GetDefinition/";
+        public string DbConnectionData_SaveConnection { get; } = "/ProjectConfigurationData/SaveConnection/";
+        
     }
 }

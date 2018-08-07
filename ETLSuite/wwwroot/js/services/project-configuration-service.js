@@ -14,11 +14,25 @@
             });
     }
     function GetDefinition(id) {
-        
+        return $.getJSON(urls.DbConnectionData_GetDefinition + id)
+            .done(function (resp) {
+                return resp;
+            });
+    }
+    function SaveConnection(connection, type) {
+        return $.post(urls.DbConnectionData_SaveConnection, {
+            vm: connection,
+            type: type
+        })
+            .done(function (resp) {
+                return resp;
+            });
     }
 
     services.ProjectConfigurationService = app.Services.DbConnectionService || {
-        GetAllDefinitions: GetAllDefinitions
+        GetAllDefinitions: GetAllDefinitions,
+        GetDefinition: GetDefinition,
+        SaveConnection: SaveConnection
     };
 
 })(jQuery, app.Util, app.Services);

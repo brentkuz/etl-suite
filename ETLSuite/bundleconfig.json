@@ -36,13 +36,13 @@
       "wwwroot/js/services/project-configuration-service.js",
 
       //apps
-      "wwwroot/js/apps/schema-tree-app.js",
-      "wwwroot/js/apps/db-connection-app.js",
-      "wwwroot/js/apps/project-info-app.js",
-      "wwwroot/js/apps/project-configuration-app.js",
-      "wwwroot/js/apps/project-upload-schema-app.js",
-      "wwwroot/js/apps/project-jobs-app.js",
-      "wwwroot/js/apps/manage-tab-app.js"
+      "wwwroot/js/apps/project/schema-tree-app.js",
+      "wwwroot/js/apps/project/db-connection-app.js",
+      "wwwroot/js/apps/project/project-info-app.js",
+      "wwwroot/js/apps/project/project-configuration-app.js",
+      "wwwroot/js/apps/project/project-upload-schema-app.js",
+      "wwwroot/js/apps/project/project-jobs-app.js",
+      "wwwroot/js/apps/project/manage-tab-app.js"
     ],
     // Optionally specify minification options
     "minify": {
@@ -56,7 +56,7 @@
     "outputFileName": "wwwroot/dist/projects.min.js",
     "inputFiles": [
       "wwwroot/js/services/project-service.js",
-      "wwwroot/js/apps/project-list-app.js"
+      "wwwroot/js/apps/project/project-list-app.js"
     ],
     // Optionally specify minification options
     "minify": {
