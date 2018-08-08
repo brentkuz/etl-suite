@@ -1,7 +1,7 @@
 ﻿
-//Project Configuration Data Service
+//Db Connection Data Service
 (function ($, util, services) {
-    var name = "ProjectConfigurationService";
+    var name = "DbConnectionService";
     util.CheckDependencies(name, arguments);
 
     var config = util.Config;
@@ -19,20 +19,19 @@
                 return resp;
             });
     }
-    function SaveConnection(connection, type) {
-        return $.post(urls.DbConnectionData_SaveConnection, {
-            vm: connection,
-            type: type
+    function SaveSqlServerConnection(connection) {
+        return $.post(urls.DbConnectionData_SaveSqlServerConnection, {
+            vm: connection
         })
             .done(function (resp) {
                 return resp;
             });
     }
 
-    services.ProjectConfigurationService = app.Services.DbConnectionService || {
+    services.DbConnectionService = app.Services.DbConnectionService || {
         GetAllDefinitions: GetAllDefinitions,
         GetDefinition: GetDefinition,
-        SaveConnection: SaveConnection
+        SaveSqlServerConnection: SaveSqlServerConnection
     };
 
 })(jQuery, app.Util, app.Services);

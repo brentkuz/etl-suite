@@ -14,6 +14,6 @@ namespace ETLSuite.Business.Objects
             ConnectionString = new SqlConnectionStringBuilder(connectionString);   
         }
 
-        public SqlConnectionStringBuilder ConnectionString { get; private set; }
+        public SqlConnectionStringBuilder ConnectionString { get; set; }
     }
 }

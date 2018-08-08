@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using ETLSuite.Crosscutting.Enums;
 using Microsoft.Extensions.Logging;
 
-namespace ETLSuite.Tests.Web.Models
+namespace ETLSuite.Tests.Web.Controllers
 {
     [TestClass]
     [TestCategory("ProjectController_Unit")]

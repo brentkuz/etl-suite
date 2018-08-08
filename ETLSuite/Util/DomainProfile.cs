@@ -8,6 +8,7 @@ using ETLSuite.Models.Project.Tabs.DbConnection;
 using ETLSuite.Models.Project.Tabs.EditModals.DbConnection;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -34,16 +35,20 @@ namespace ETLSuite.Util
             CreateMap<DbConnectionDefinition, DbConnectionDefinitionSummaryViewModel>()
                 .ForMember(dest => dest.TypeDisplay, opts => opts.MapFrom(src => src.Type.ToDisplay()));
 
-            CreateMap<SqlServerConnectionDefinition, SqlServerConnectionDefinitionViewModel>()
-                .ForMember(dest => dest.DataSource, opts => opts.MapFrom(src => src.ConnectionString.DataSource))
-                .ForMember(dest => dest.InitialCatalog, opts => opts.MapFrom(src => src.ConnectionString.InitialCatalog))
-                .ForMember(dest => dest.ConnectionRetryCount, opts => opts.MapFrom(src => src.ConnectionString.ConnectRetryCount))
-                .ForMember(dest => dest.ConnectionRetryInterval, opts => opts.MapFrom(src => src.ConnectionString.ConnectRetryCount))
-                .ForMember(dest => dest.Encrypt, opts => opts.MapFrom(src => src.ConnectionString.Encrypt))
-                .ForMember(dest => dest.IntegratedSecurity, opts => opts.MapFrom(src => src.ConnectionString.IntegratedSecurity))
-                .ForMember(dest => dest.MultipleActiveResultSets, opts => opts.MapFrom(src => src.ConnectionString.MultipleActiveResultSets))
-                .ForMember(dest => dest.Password, opts => opts.MapFrom(src => src.ConnectionString.Password))
-                .ForMember(dest => dest.UserID, opts => opts.MapFrom(src => src.ConnectionString.UserID));
+            CreateMap<SqlServerConnectionDefinitionViewModel, SqlConnectionStringBuilder>()
+                .ForMember(dest => dest.DataSource, opts => opts.MapFrom(src => src.DataSource))
+                .ForMember(dest => dest.InitialCatalog, opts => opts.MapFrom(src => src.InitialCatalog))
+                .ForMember(dest => dest.ConnectRetryCount, opts => opts.MapFrom(src => src.ConnectionRetryCount))
+                .ForMember(dest => dest.ConnectRetryInterval, opts => opts.MapFrom(src => src.ConnectionRetryCount))
+                .ForMember(dest => dest.ConnectTimeout, opts => opts.MapFrom(src => src.ConnectionTimeout))
+                .ForMember(dest => dest.Encrypt, opts => opts.MapFrom(src => src.Encrypt))
+                .ForMember(dest => dest.IntegratedSecurity, opts => opts.MapFrom(src => src.IntegratedSecurity))
+                .ForMember(dest => dest.MultipleActiveResultSets, opts => opts.MapFrom(src => src.MultipleActiveResultSets))
+                .ForMember(dest => dest.Password, opts => opts.MapFrom(src => src.Password ?? ""))
+                .ForMember(dest => dest.UserID, opts => opts.MapFrom(src => src.UserID ?? ""))
+                .ForAllOtherMembers(opt => opt.Ignore());
+            CreateMap<SqlServerConnectionDefinitionViewModel, SqlServerConnectionDefinition>()
+                .ForMember(dest => dest.ConnectionString, opts => opts.MapFrom(src => src));
         }
 
        

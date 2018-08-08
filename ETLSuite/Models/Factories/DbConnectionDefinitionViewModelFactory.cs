@@ -3,6 +3,7 @@ using ETLSuite.Crosscutting.Enums;
 using ETLSuite.Models.Project.Tabs.EditModals.DbConnection;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,7 +15,7 @@ namespace ETLSuite.Models.Factories
     }
     public class DbConnectionDefinitionViewModelFactory : IDbConnectionDefinitionViewModelFactory
     {
-        private Dictionary<DatabaseType, Func<DbConnectionDefinitionBase, object>> map = new Dictionary<DatabaseType, Func<DbConnectionDefinitionBase, object>>()
+        private Dictionary<DatabaseType, Func<DbConnectionDefinitionBase, object>> toVM = new Dictionary<DatabaseType, Func<DbConnectionDefinitionBase, object>>()
         {
             {
                 DatabaseType.SqlServer,
@@ -32,6 +33,7 @@ namespace ETLSuite.Models.Factories
                         InitialCatalog = cs.InitialCatalog,
                         ConnectionRetryCount = cs.ConnectRetryCount,
                         ConnectionRetryInterval = cs.ConnectRetryInterval,
+                        ConnectionTimeout = cs.ConnectTimeout,
                         Encrypt = cs.Encrypt,
                         IntegratedSecurity = cs.IntegratedSecurity,
                         MultipleActiveResultSets = cs.MultipleActiveResultSets,
@@ -45,8 +47,9 @@ namespace ETLSuite.Models.Factories
         };
         public object GetViewModel(DbConnectionDefinitionBase definition)
         {
-            var ctor = map[definition.Type];
+            var ctor = toVM[definition.Type];
             return ctor(definition);
         }
+
     }
 }

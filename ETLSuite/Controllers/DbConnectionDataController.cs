@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using ETLSuite.Business.Objects;
 using ETLSuite.Business.Services;
 using ETLSuite.Crosscutting.Enums;
 using ETLSuite.Models;
@@ -15,12 +16,12 @@ using Microsoft.Extensions.Logging;
 
 namespace ETLSuite.Controllers
 {
-    public class ProjectConfigurationDataController : BaseController<ProjectConfigurationDataController>
+    public class DbConnectionDataController : BaseController<DbConnectionDataController>
     {
         private IDbConnectionDefinitionService connectionService;
         private IDbConnectionDefinitionViewModelFactory vmFactory;
 
-        public ProjectConfigurationDataController(IMapper mapper, ILogger<ProjectConfigurationDataController> logger, IDbConnectionDefinitionService connectionService, IDbConnectionDefinitionViewModelFactory vmFactory) : base(mapper, logger)
+        public DbConnectionDataController(IMapper mapper, ILogger<DbConnectionDataController> logger, IDbConnectionDefinitionService connectionService, IDbConnectionDefinitionViewModelFactory vmFactory) : base(mapper, logger)
         {
             this.connectionService = connectionService;
             this.vmFactory = vmFactory;
@@ -56,9 +57,7 @@ namespace ETLSuite.Controllers
             var response = new JsonResponse();
             try
             {
-                var definition = connectionService.GetById(id);
-
-                response.Data = vmFactory.GetViewModel(definition);
+                response.Data = vmFactory.GetViewModel(connectionService.GetById(id));
             }
             catch (Exception ex)
             {
@@ -70,10 +69,23 @@ namespace ETLSuite.Controllers
         }
 
         [HttpPost]
-        public IActionResult SaveConnection(object vm, DatabaseType type)
+        public IActionResult SaveSqlServerConnection(SqlServerConnectionDefinitionViewModel vm)
         {
             var response = new JsonResponse();
-
+            try
+            {
+                response.Success = connectionService.SaveSqlServerConnection(mapper.Map<SqlServerConnectionDefinition>(vm));
+                if(!response.Success)
+                {
+                    response.Notification = "An error occurred saving your changes.";
+                }
+            }
+            catch(Exception ex)
+            {
+                response.Success = false;
+                response.Notification = "An error occurred saving your changes.";
+                logger.LogError(ex, response.Notification);
+            }
 
             return Json(response);
         }

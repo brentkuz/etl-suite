@@ -14,6 +14,7 @@ namespace ETLSuite.Models.Project.Tabs.EditModals.DbConnection
         public string InitialCatalog { get; set; }
         public int ConnectionRetryCount { get; set; }
         public int ConnectionRetryInterval { get; set; }
+        public int ConnectionTimeout { get; set; }
         public bool Encrypt { get; set; }
         public bool IntegratedSecurity { get; set; }
         public bool MultipleActiveResultSets { get; set; }

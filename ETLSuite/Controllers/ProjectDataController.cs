@@ -90,6 +90,11 @@ namespace ETLSuite.Controllers
                             response.Data = mapper.Map<ProjectInfoViewModel>(refresh);
                     }
                 }
+                else
+                {
+                    response.Data = vm;
+                    response.Notification = "An error occurred saving your changes";
+                }
             }
             catch(Exception ex)
             {

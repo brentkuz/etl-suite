@@ -21,10 +21,14 @@ namespace ETLSuite
         public string ProjectData_SaveProjectInfo { get; } = "/ProjectData/SaveProjectInfo";
 
 
-        //ProjectConfigurationData
-        public string DbConnectionData_GetAllDbConnections { get; } = "/ProjectConfigurationData/GetAllDbConnections?projectId=";
-        public string DbConnectionData_GetDefinition { get; } = "/ProjectConfigurationData/GetDefinition/";
-        public string DbConnectionData_SaveConnection { get; } = "/ProjectConfigurationData/SaveConnection/";
-        
+        //DbConnectionData
+        public string DbConnectionData_GetAllDbConnections { get; } = "/DbConnectionData/GetAllDbConnections?projectId=";
+        public string DbConnectionData_GetDefinition { get; } = "/DbConnectionData/GetDefinition/";
+        public string DbConnectionData_SaveSqlServerConnection { get; } = "/DbConnectionData/SaveSqlServerConnection/";
+        public string DbConnectionData_SaveOracleConnection { get; } = "/DbConnectionData/SaveOracleConnection/";
+        public string DbConnectionData_SaveODBCConnection { get; } = "/DbConnectionData/SaveODBCConnection/";
+
     }
+
 }
+

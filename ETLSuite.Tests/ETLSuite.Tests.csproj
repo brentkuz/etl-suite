@@ -20,4 +20,8 @@
     <ProjectReference Include="..\ETLSuite\ETLSuite.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Web\Util\" />
+  </ItemGroup>
+
 </Project>

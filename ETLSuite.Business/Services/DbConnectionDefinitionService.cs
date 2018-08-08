@@ -13,6 +13,7 @@ namespace ETLSuite.Business.Services
     {
         IEnumerable<DbConnectionDefinition> GetAllByProjectId(int projectId);
         DbConnectionDefinitionBase GetById(int id);
+        bool SaveSqlServerConnection(SqlServerConnectionDefinition connection);
     }
     public class DbConnectionDefinitionService : ServiceBase, IDbConnectionDefinitionService
     {
@@ -34,6 +35,12 @@ namespace ETLSuite.Business.Services
                 .Where(x => x.Id == id).SingleOrDefault();
 
             return definitionFactory.GetConnectionDefinition(entity);
+        }
+
+        public bool SaveSqlServerConnection(SqlServerConnectionDefinition connection)
+        {
+
+            return false;
         }
         
     }

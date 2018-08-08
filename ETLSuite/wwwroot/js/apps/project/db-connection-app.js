@@ -1,7 +1,7 @@
 ﻿
 //Db Connection App
 
-(function ($, Vue, util, configService, projectService) {
+(function ($, Vue, util, dbConnectionService, projectService) {
     var name = "DbConnectionApp";
     util.CheckDependencies(name, arguments);
 
@@ -23,7 +23,7 @@
             created: function () {
                 this.GetById = function (id) {
                     var self = this;
-                    configService.GetDefinition(id)
+                    dbConnectionService.GetDefinition(id)
                         .done(function (resp) {
                             if (resp) {
                                 self.Selected = resp.Data;
@@ -46,7 +46,7 @@
                 Submit: function () {
                     var self = this;
                     try {
-                        configService.SaveConnection(self.Selected, "SqlServer")
+                        dbConnectionService.SaveSqlServerConnection(self.Selected)
                             .done(function (resp) {
                                 if (resp) {
                                     if (resp.Success) {
@@ -81,7 +81,7 @@
             created: function () {
                 var self = this;
                 this.GetAll = function () {                    
-                    configService.GetAllDefinitions(projectId)
+                    dbConnectionService.GetAllDefinitions(projectId)
                         .done(function (resp) {
                             if (resp) {
                                 self.Definitions = resp.Data;
@@ -133,4 +133,4 @@
 
     };
 
-})(jQuery, Vue, app.Util, app.Services.ProjectConfigurationService, app.Services.ProjectService);
+})(jQuery, Vue, app.Util, app.Services.DbConnectionService, app.Services.ProjectService);
