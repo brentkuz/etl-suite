@@ -1,4 +1,5 @@
-﻿using ETLSuite.Data;
+﻿using AutoMapper;
+using ETLSuite.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;

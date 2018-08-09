@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AutoMapper;
 using ETLSuite.Business.Factories;
 using ETLSuite.Business.Objects;
 using ETLSuite.Data;
@@ -39,8 +40,15 @@ namespace ETLSuite.Business.Services
 
         public bool SaveSqlServerConnection(SqlServerConnectionDefinition connection)
         {
+            var inDb = uow.DbConnectionDefinitionRepository.Get()
+                .Where(x => x.Id == connection.Id).SingleOrDefault();
 
-            return false;
+            inDb.Name = connection.Name;
+            inDb.ConnectionString = connection.ConnectionString.ConnectionString;
+
+            uow.DbConnectionDefinitionRepository.Update(inDb);
+
+            return uow.Save() > 0;
         }
         
     }

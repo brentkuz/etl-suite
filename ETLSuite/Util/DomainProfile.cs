@@ -21,8 +21,9 @@ namespace ETLSuite.Util
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<ProjectStatus, Dictionary<int, string>>().ConvertUsing(x => new Dictionary<int, string>());
-            });            
+            });
 
+            #region Project
             CreateMap<Project, ProjectSummaryViewModel>();
 
             CreateMap<Project, ProjectInfoViewModel>()
@@ -31,7 +32,9 @@ namespace ETLSuite.Util
 
             CreateMap<ProjectInfoViewModel, Project>()
                 .ForMember(dest => dest.Status, opts => opts.MapFrom(src => (ProjectStatus)src.SelectedStatus));
+            #endregion
 
+            #region DbConnection
             CreateMap<DbConnectionDefinition, DbConnectionDefinitionSummaryViewModel>()
                 .ForMember(dest => dest.TypeDisplay, opts => opts.MapFrom(src => src.Type.ToDisplay()));
 
@@ -47,8 +50,14 @@ namespace ETLSuite.Util
                 .ForMember(dest => dest.Password, opts => opts.MapFrom(src => src.Password ?? ""))
                 .ForMember(dest => dest.UserID, opts => opts.MapFrom(src => src.UserID ?? ""))
                 .ForAllOtherMembers(opt => opt.Ignore());
+
             CreateMap<SqlServerConnectionDefinitionViewModel, SqlServerConnectionDefinition>()
                 .ForMember(dest => dest.ConnectionString, opts => opts.MapFrom(src => src));
+
+            CreateMap<SqlServerConnectionDefinition, DbConnectionDefinition>()
+                .ForMember(dest => dest.ConnectionString, opts => opts.MapFrom(src => src.ConnectionString));
+
+            #endregion
         }
 
        
